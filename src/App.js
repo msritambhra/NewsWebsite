@@ -1,13 +1,8 @@
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import './App.css';
-import Header from './components/Header';
-
-const Home = () => (
-  <div>
-    <h2>Home</h2>
-  </div>
-);
+import Header from './components/Header1';
+import Home from './components/Views/Home';
 
 const World = () => (
   <div>
@@ -31,7 +26,7 @@ function App() {
   return (
     <div className='App'>
       <Router>
-        <Route path='/:page' component={Header} />
+        <Route exact path='/:page' component={Header} />
         <Route exact path='/' component={Header} />
 
         <Route exact path='/' component={Home} />

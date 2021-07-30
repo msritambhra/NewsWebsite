@@ -1,0 +1,15 @@
+.main{
+    position: relative;
+    width: 50%;
+    height: 20rem;
+    padding: 0.5%;
+    border: 1px solid black;
+
+}
+
+.image-container{
+    
+    width: 50%;
+    height: 100%;
+    background-color: black;
+}

@@ -16,7 +16,7 @@ const HeaderLink = ({ page, selected }) => {
       </div>
     </Link>
   );
-};
+}; 
 
 const Header = () => {
   
