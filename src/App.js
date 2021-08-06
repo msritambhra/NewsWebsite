@@ -1,43 +1,33 @@
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import styles from './App.module.css'
+import { Route, Redirect, Switch } from 'react-router-dom';
+import NavBar from './components/NavBar';
+import Home from './views/Home';
+import Section from './views/Section';
 
-import './App.css';
-import Header from './components/Header1';
-import Home from './components/Views/Home';
-
-const World = () => (
-  <div>
-    <h2>World</h2>
-  </div>
-);
-
-const Politics = () => (
-  <div>
-    <h2>Politics</h2>
-  </div>
-);
-
-const Technology = () => (
-  <div>
-    <h2>Technology</h2>
-  </div>
-);
-
-function App() {
-  return (
-    <div className='App'>
-      <Router>
-        <Route exact path='/:page' component={Header} />
-        <Route exact path='/' component={Header} />
-
-        <Route exact path='/' component={Home} />
-        <Route exact path='/home' component={Home} />
-        <Route exact path='/world' component={World} />
-        <Route exact path='/politics' component={Politics} />
-        <Route exact path='/technology' component={Technology} />
-      </Router>
+const App = () => {
+    return(
+      <div>
+        <header className={styles.header}>
+          <NavBar></NavBar>
+        </header>
+        <div className={styles.content}>
+          <Switch>
+            <Route exact path="/">
+              <Redirect to="/home"></Redirect>
+            </Route>
+            <Route path="/home">
+              <Home></Home>
+            </Route>
+            <Route exact path="/section/:section_name">
+              <Section></Section>
+            </Route>
+            <Route exact path="/article/:article_id">
+              <div>Article</div>
+            </Route>
+          </Switch>
+        </div>
     </div>
-  );
+    );
 }
 
 export default App;
-
