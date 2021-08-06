@@ -3,6 +3,7 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Home from './views/Home';
 import Section from './views/Section';
+import NotFound from './views/NotFound'
 
 const App = () => {
     return(
@@ -23,6 +24,9 @@ const App = () => {
             </Route>
             <Route exact path="/article/:article_id">
               <div>Article</div>
+            </Route>
+            <Route path="*">
+              <NotFound></NotFound>
             </Route>
           </Switch>
         </div>
