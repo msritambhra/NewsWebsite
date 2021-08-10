@@ -10,9 +10,10 @@ const NavBar = () =>{
     return (<nav className={styles.navbar}>
         
         <div className={styles['nav-container']}>
-            <NavLink exact to="/" className={styles['nav-logo']}>
-                <h1>Daily Chronicles</h1>
-            </NavLink>
+        
+            <div className={styles['nav-logo']}>
+            <h1><NavLink exact to="/">Daily Chronicles</NavLink></h1>
+            </div>
             <ul className={toggle ? `${styles['nav-menu']} ${styles['active']}`:styles['nav-menu']}>
                 <li className={styles['nav-item']}>
                     <NavLink activeClassName={styles.active} className={styles['nav-links']} to="/home" onClick={navToggleHandler}>Home</NavLink>

@@ -1,5 +1,5 @@
 import {useState, useEffect, useCallback} from 'react'
-// import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import axios from 'axios'
 import styles from './HotNews.module.css'
 
@@ -37,13 +37,13 @@ const HotNews = (props) =>{
         fetchArticleHandler();
     }, [fetchArticleHandler])
 
-    return ( <div className={styles.container}>
+    return ( <Link to={{pathname: `/article/${article.id}`}}><div className={styles.container}>
                    
                     <img src={article.image} alt={article.title}/>                
                     <h2 className={styles["card-title"]}>{article.title}</h2>
                     <p className={styles["card-desc"]}>{article.description}</p>
   
-    </div>)
+    </div></Link>)
     // styles={{ backgroundImage:`url(${article.image})`,heihgt: "100%",width:"100%" }}
 }
 

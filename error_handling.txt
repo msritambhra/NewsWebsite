@@ -1,0 +1,6 @@
+- Remove duplicate key data.
+- If no image is there, a default image.
+- If no summary is there, remove styling/animations showing summary.
+- Give a minimum number of letters to be displayed in the article title.
+- If recent news is less than 3.
+- If recent news or priority news is 0.

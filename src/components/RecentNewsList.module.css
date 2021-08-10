@@ -1,0 +1,7 @@
+.recent{
+    flex: 1 1 30%;
+    /* min-width: 200px;. */
+    color: #000;
+    border: 1px solid black;
+    padding: 0.5rem;
+}

@@ -1,6 +1,7 @@
 import {useParams} from 'react-router-dom';
 import HotNews from '../components/HotNews'
 import PriorityNewsList from '../components/PriorityNewsList';
+import RecentNewsList from '../components/RecentNewsList';
 import styles from './Section.module.css'
 
 const Section = () => {
@@ -14,11 +15,12 @@ const Section = () => {
                 <div className={styles['recent-container']}>
                     <div className={styles['heading-container']}>
                         <div className={styles.heading}>Recent News</div>
-                    </div>
+                    </div> 
                     <div className={styles['list-container']}>
-                        <div className={styles.recent}>Recent1</div>
+                        <RecentNewsList section={params.section_name}></RecentNewsList>
+{/*                         
                         <div className={styles.recent}>Recent2</div>
-                        <div className={styles.recent}>Recent3</div>
+                        <div className={styles.recent}>Recent3</div> */}
                     </div>
                 </div>
             </main>

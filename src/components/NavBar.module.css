@@ -33,6 +33,11 @@
     flex-grow:1;
 }
 
+.nav-logo a{
+    text-decoration: none;
+    color: white;
+}
+
 .nav-menu{
     display: flex;
     list-style: none;
@@ -71,8 +76,10 @@
 }
 
 .nav-item .active{
-    color: #BB1919;
+    /* color: #BB1919; */
+    /* background-color: #BB1919; */
     border: 1px solid #BB1919;
+
     /* box-shadow: inset 0 0 2rem 0 #BB1919; */
 }
 

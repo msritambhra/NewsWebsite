@@ -1,10 +1,8 @@
 import {useState, useEffect, useCallback} from 'react'
 import axios from 'axios'
-import styles from './PriorityNewsList.module.css'
-import PriorityListItem from './PriorityListItem';
+import styles from './RecentNewsList.module.css'
 
-
-const PriorityNewsList = (props) =>{
+const RecentNewsList = (props) =>{
 
     const [articles, setArticles] = useState([]);
     const [error, setError] = useState(null);
@@ -17,10 +15,10 @@ const PriorityNewsList = (props) =>{
         try{
             let response;
             if(props.section===undefined){
-                response = await axios.get('http://localhost:3001/article-summaries?priority=1&_sort=publishedAt&_limit=10');
+                response = await axios.get('http://localhost:3001/article-summaries?priority=0&_sort=publishedAt&_limit=3');
             }
             else{
-                response = await axios.get(`http://localhost:3001/article-summaries?category_name=${props.section}&priority=1&_sort=publishedAt&_limit=10`);
+                response = await axios.get(`http://localhost:3001/article-summaries?category_name=${props.section}&priority=0&_sort=publishedAt&_limit=3`);
             }
 
             if(response.data.length<1){
@@ -36,23 +34,19 @@ const PriorityNewsList = (props) =>{
         setIsLoading(false);
         
     }, [props.section]);
-
+    console.log(articles);
+    console.log('Recent')
     useEffect(()=>{
         fetchArticlesHandler();
     }, [fetchArticlesHandler]);
 
-    return <div className={styles.priority_list}>
-        {/* <div className={styles['heading-container']}>
-            <div className={styles.blink}>
-                <i className="fas fa-circle"></i>
-            </div>
-            Top News
-        </div> */}
-        {articles.map((data,index)=>{
-            return <PriorityListItem key={data.id} article={data}></PriorityListItem>
+
+    return <>
+        {
+        articles.map((data,index)=>{
+            return <div className={styles.recent} key={data.id}>{data.id}</div>
         })}
-    </div>
-    
+        </>
 }
 
-export default PriorityNewsList;
+export default RecentNewsList;

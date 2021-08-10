@@ -4,9 +4,11 @@
 .container{
   height: 100%;
   width: 100%;
-  /* box-shadow: 0 30px 60px -6px black; */
+  box-shadow: 0 30px 30px -15px black;
   position: relative;
   margin-top: 0.5rem;
+  /* border-radius: 2rem; */
+  cursor: pointer;
 }
 
 .card-title {
@@ -42,6 +44,7 @@
   display: block;
   position: relative;
   z-index:1;
+  /* border-radius: 2rem; */
 }
 
 .card-desc {

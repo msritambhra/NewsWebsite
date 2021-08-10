@@ -64,13 +64,13 @@
     font-size: 0.9rem;
     font-weight:150;
     text-transform: capitalize;
-    width: 30%;
+    /* width: 30%; */
     display: inline-block;
     margin: 0 auto;
     position: absolute;
     bottom: 0;
     left: 0;
-    padding: 0.2rem;
+    padding: 0.2rem 0.5rem;
     background: rgba(187, 25, 25, 1);
     color: #fff;
     text-align: center;
