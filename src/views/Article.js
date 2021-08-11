@@ -2,23 +2,25 @@ import {useState, useEffect, useCallback} from 'react'
 import {useParams} from 'react-router-dom';
 import axios from 'axios'
 import CommentBox from '../components/CommentBox'
+import PriorityNewsList from '../components/PriorityNewsList'
 import styles from './Article.module.css'
 
 const Article = () =>{
     const params = useParams();
     
     const [article, setArticle] = useState('');
-    const [error, setError] = useState(null);
+    const [error, setError] = useState(false);
     const [isLoading, setIsLoading] = useState(null);
    
+    const content = '';
     
     const fetchArticleHandler = useCallback(async()=>{
         setIsLoading(true);
         setError(false);
+        let response;
         try{
-            let response;
             response = await axios.get(`http://localhost:3001/article-summaries/${params.article_id}`);
-
+            /* Handle 404 Response */
             if(response.data.length<1){
                 throw new Error('No Data Found!')
             }
@@ -59,7 +61,10 @@ const Article = () =>{
             </section> {/*Comment Section*/}
         </main>
         <aside className={`${styles.sidebar} ${styles.col}`}>
-
+            <div className={styles['heading-container']}>
+                <span>Recommended Articles</span>
+            </div>
+            <PriorityNewsList section={article.category_name}></PriorityNewsList>
         </aside>
 
     </div>);

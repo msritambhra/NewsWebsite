@@ -4,3 +4,7 @@
 - Give a minimum number of letters to be displayed in the article title.
 - If recent news is less than 3.
 - If recent news or priority news is 0.
+- Loading UI while pages are Loading
+- Wrong paths ( Redirect Article page to Not Found )
+- Remove dupicate articles on a page.
+- Script Detection in the Article Content.

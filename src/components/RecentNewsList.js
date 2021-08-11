@@ -1,6 +1,7 @@
 import {useState, useEffect, useCallback} from 'react'
 import axios from 'axios'
 import styles from './RecentNewsList.module.css'
+import RecentNewsItem from './RecentNewsItem';
 
 const RecentNewsList = (props) =>{
 
@@ -34,8 +35,7 @@ const RecentNewsList = (props) =>{
         setIsLoading(false);
         
     }, [props.section]);
-    console.log(articles);
-    console.log('Recent')
+    
     useEffect(()=>{
         fetchArticlesHandler();
     }, [fetchArticlesHandler]);
@@ -44,7 +44,7 @@ const RecentNewsList = (props) =>{
     return <>
         {
         articles.map((data,index)=>{
-            return <div className={styles.recent} key={data.id}>{data.id}</div>
+            return <RecentNewsItem article={data}></RecentNewsItem>
         })}
         </>
 }

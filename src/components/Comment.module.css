@@ -1,0 +1,9 @@
+.comment {
+    /* border-top: 0.125rem solid #000; */
+    border-top: 1px solid rgb(70, 68, 68);;
+}
+
+.comment-text {
+    font-style: italic;
+    margin-left: 1rem;
+  }
