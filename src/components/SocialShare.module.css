@@ -1,0 +1,44 @@
+.social-share-container{
+    /* display: flex; */
+    /* box-shadow: 0.1rem 0.1rem 0.5rem 0.5rem rgba(0, 0, 0, 0.1); */
+    /* padding: 0.2rem 0.5rem; */
+}
+
+.social-share-container i{
+    font-size: 1.7rem;
+    /* color: #BB1919; */
+}
+
+.social-share-container a{
+    margin: 0 0.3rem;
+    transition: 500ms;
+    
+}
+
+.social-share-container a:hover{
+    transform: scale(1.2);
+}
+
+.twitter{
+    color: #1da1f2;
+}
+
+.facebook{
+    color:#1877f2;
+}
+
+.linkedin{
+    color:#0077b5;
+}
+
+.whatsapp{
+    color: #25d366;
+}
+
+/* .copy{
+    position: relative;
+}
+
+.tooltip{
+    visibility: hidden;
+} */

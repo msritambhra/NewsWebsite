@@ -3,7 +3,9 @@ import {useParams} from 'react-router-dom';
 import axios from 'axios'
 import CommentBox from '../components/CommentBox'
 import PriorityNewsList from '../components/PriorityNewsList'
+import SocialShare from '../components/SocialShare'
 import styles from './Article.module.css'
+
 
 const Article = () =>{
     const params = useParams();
@@ -49,6 +51,9 @@ const Article = () =>{
                     <div className={styles.sub_header}>
                         <div className={styles.article__date}>{article.publishedAt}</div>
                         {/* Add -Share on social Media -Star*/}
+                        <div className={styles.social_share}>
+                            <SocialShare title={article.title} url={window.location.href} image={article.image}></SocialShare>
+                        </div>
                     </div>
                     <div className={styles.article__image}>
                         <img src={article.image} alt={article.title}></img>

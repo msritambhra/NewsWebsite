@@ -73,6 +73,7 @@ article{
 
 .sub_header{
     border-bottom: 1px solid rgb(70, 68, 68);
+    padding-bottom: 0.6rem;
 }
 
 .article__date{
@@ -81,6 +82,12 @@ article{
     display: inline-block;
     color: rgba(0,0,0,0.7);
     /* color: rgba(255,255,255,0.8); */
+}
+
+.social_share{
+    /* font-size: 1rem;
+    font-weight: 600; */
+    float: right;
 }
 
 .article__image{
@@ -110,6 +117,9 @@ article{
 .comment-container{
     height: 100%;
     /* border: 1px solid black; */
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
 }
 
 @media screen and (min-width:1025px){
