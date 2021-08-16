@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Rye&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap');
 
 .navbar{
     background-color: transparent;
@@ -6,10 +8,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    /* font-family: 'Nunito Sans', sans-serif;; */
+    /* font-weight: 800; */
     /* position: sticky; */
     /* top: 0; */
     /* z-index: 10; */
+    /* border-bottom: 2px solid #000; */
 }
 
 .nav-container{
@@ -24,10 +29,13 @@
 
 .nav-logo{
     color: white;
+    /* color: #000; */
     text-decoration: none;
-    font-family: 'Rye', cursive;
+    /* font-family: 'Rye', cursive; */
+    font-family: 'UnifrakturCook', cursive;
     padding: 0.5rem 1rem;
-    font-size: 1.2rem;
+    /* font-size: 1.2rem; */
+    font-size: 1.5rem;
     margin-left: 20px;
     cursor: pointer;
     flex-grow:1;
@@ -36,6 +44,7 @@
 .nav-logo a{
     text-decoration: none;
     color: white;
+    /* color: #000; */
 }
 
 .nav-menu{
@@ -48,6 +57,7 @@
 
 .nav-links{
     color: white;
+    /* color: #000; */
     text-decoration: none;
     padding: 0.5rem 1rem;
     height: 100%;
@@ -109,6 +119,7 @@
         height: 100vh;
         position: absolute;
         top: 60px;
+        top: 100px;
         /* left: -110%; */
         opacity: 1;
     }
@@ -141,6 +152,7 @@
         display: block;
         position: absolute;
         top: 10px;
+        top: 60px;
         right: 10px;
         transform: translate(-200%, 50%); 
         font-size: 1.5rem;

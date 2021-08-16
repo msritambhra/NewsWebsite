@@ -30,7 +30,7 @@ const Section = () => {
                         <i className="fas fa-circle"></i>
                     </div>
                     Top News
-                    </div>
+                    </div> 
                     <div className={styles['priority-container']}>
                     <PriorityNewsList section={params.section_name}></PriorityNewsList>
                     </div>

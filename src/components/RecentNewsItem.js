@@ -3,7 +3,7 @@ import styles from './RecentNewsItem.module.css'
 
 const RecentNewsItem = (props) =>{
     const articleInfo = props.article;
-console.log(articleInfo);
+
     return <div className={styles.recent}>
         <div className={`${styles["item-col-1"]}`}>
             <img src={articleInfo.image} alt={articleInfo.title}></img>

@@ -24,6 +24,27 @@
     outline: none;
 }
 
+.form-control {
+    margin-bottom: 1rem;
+  }
+
+.form-control input,
+.form-control textarea {
+  font: inherit;
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 20rem;
+  max-width: 100%;
+}
+
+.form-control input:focus,
+.form-control textarea:focus {
+  outline: none;
+  border-color: #292929;
+  background-color: #ffffff;
+}
+
 /* .comment-fields textarea{
     font-style: italic;
 } */
@@ -45,4 +66,17 @@
     background: transparent;
     border: 2px solid #BB1919;
     cursor: pointer;
+}
+
+.comment-submit-button:disabled,
+.comment-submit-button:disabled:hover,
+.comment-submit-button:disabled:active {
+  background-color: #ccc;
+  color: #292929;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
+.error-text {
+    color: #b40e0e;
 }

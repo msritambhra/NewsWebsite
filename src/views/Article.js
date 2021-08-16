@@ -4,6 +4,7 @@ import axios from 'axios'
 import CommentBox from '../components/CommentBox'
 import PriorityNewsList from '../components/PriorityNewsList'
 import SocialShare from '../components/SocialShare'
+import LoadingSpinner from '../UI/LoadingSpinner'
 import styles from './Article.module.css'
 
 
@@ -41,7 +42,12 @@ const Article = () =>{
     useEffect(()=>{
         fetchArticleHandler();
     }, [fetchArticleHandler]);
-    
+
+    if(isLoading){
+        return <div className={styles["loading"]}>
+            <LoadingSpinner></LoadingSpinner>
+        </div>
+    }
     return (<div className={styles['main-sidebar']}>
         <main className={`${styles.main} ${styles.col}`}>
             <section className={styles.article}>

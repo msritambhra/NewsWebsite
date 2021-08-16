@@ -6,5 +6,6 @@
 - If recent news or priority news is 0.
 - Loading UI while pages are Loading
 - Wrong paths ( Redirect Article page to Not Found )
-- Remove dupicate articles on a page.
+- Remove duplicate articles on a page.
 - Script Detection in the Article Content.
+- If any of the key values in JSON data is absent drop that.

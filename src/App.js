@@ -5,12 +5,15 @@ import Home from './views/Home';
 import Section from './views/Section';
 import Article from './views/Article';
 import NotFound from './views/NotFound';
+import LogoHeader from './components/LogoHeader';
+import AuthHeader from './components/AuthHeader';
 
 
 const App = () => {
     return(
       <div>
         <header className={styles.header}>
+          <AuthHeader></AuthHeader>
           <NavBar></NavBar>
         </header>
         <div className={styles.content}>

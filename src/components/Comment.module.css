@@ -1,9 +1,48 @@
 .comment {
     /* border-top: 0.125rem solid #000; */
     border-top: 1px solid rgb(70, 68, 68);;
+    
 }
 
 .comment-text {
     font-style: italic;
     margin-left: 1rem;
   }
+
+/* .tip {
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    background: transparent;
+    border: 8px solid rgba(41, 41, 41, 0.7);
+} */
+
+.tip-left {
+    top: 10px;
+    left: -18px;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-bottom-color: transparent;  
+}
+
+.dialogbox .body {
+    position: relative;
+    max-width: 400px;
+    height: auto;
+    margin: 20px 10px;
+    padding: 5px;
+    background-color: #ffffff;
+    border-radius: 3px;
+    /* border: 2px solid rgba(41, 41, 41, 0.7); */
+    box-shadow:  0rem 0rem 0.1rem 0.1rem rgba(0, 0, 0, 0.1);
+}
+
+.body .message {
+    min-height: 30px;
+    border-radius: 3px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #000000;
+    display: flex;
+    align-items: center;
+}

@@ -1,6 +1,7 @@
 import {useState, useEffect, useCallback} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+import LoadingSpinner from '../UI/LoadingSpinner'
 import styles from './HotNews.module.css'
 
 const HotNews = (props) =>{
@@ -37,6 +38,12 @@ const HotNews = (props) =>{
         fetchArticleHandler();
     }, [fetchArticleHandler])
 
+    if(isLoading){
+        return <div className={styles["loading"]}>
+            <LoadingSpinner></LoadingSpinner>
+        </div>
+    }
+    
     return ( <Link to={{pathname: `/article/${article.id}`}}><div className={styles.container}>
                    
                     <img src={article.image} alt={article.title}/>                

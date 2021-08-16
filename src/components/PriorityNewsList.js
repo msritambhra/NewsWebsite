@@ -13,7 +13,7 @@ const PriorityNewsList = (props) =>{
     
     const fetchArticlesHandler = useCallback(async()=>{
         setIsLoading(true);
-        setError(false);
+        setError(null);
         try{
             let response;
             if(props.section===undefined){
@@ -27,6 +27,7 @@ const PriorityNewsList = (props) =>{
                 throw new Error('No Data Found!')
             }
 
+            // response.data.splice(0,1);
             await setArticles(()=>response.data);
         }catch(error){
             setError(error.message);
@@ -40,14 +41,12 @@ const PriorityNewsList = (props) =>{
     useEffect(()=>{
         fetchArticlesHandler();
     }, [fetchArticlesHandler]);
+    
+    if (error){
+        return <p>{error}</p>
+    }
 
     return <div className={styles.priority_list}>
-        {/* <div className={styles['heading-container']}>
-            <div className={styles.blink}>
-                <i className="fas fa-circle"></i>
-            </div>
-            Top News
-        </div> */}
         {articles.map((data,index)=>{
             return <PriorityListItem key={data.id} article={data}></PriorityListItem>
         })}

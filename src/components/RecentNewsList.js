@@ -40,7 +40,9 @@ const RecentNewsList = (props) =>{
         fetchArticlesHandler();
     }, [fetchArticlesHandler]);
 
-
+    if(error){
+        return <p>{error}</p>
+    }
     return <>
         {
         articles.map((data,index)=>{

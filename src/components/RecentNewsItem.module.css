@@ -55,8 +55,28 @@ a{
     font-weight: 600;
     vertical-align: top;
     margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    max-height: 30px;
+    /* text-align: justify; */
+    padding-right: 5px;
 }
 
+.article__title:before {
+    content: '...';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+.article__title:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    background: white;
+  }
 .article__category{
     font-size: 0.6rem;
     font-weight:600;

@@ -122,6 +122,17 @@ article{
     align-items: center; */
 }
 
+/* ----- Loading spinner Position -------*/
+.loading {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @media screen and (min-width:1025px){
     .article__image{
         height: 50vh;
