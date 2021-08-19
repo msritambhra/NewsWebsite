@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@300&display=swap');
+
+.features-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.welcome-header{
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 5px;
+    -webkit-text-stroke: 1px #282828;
+    text-shadow: 3px 6px 6px rgba(46, 45, 45, 0.8);
+    width: 100%;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #000000;
+}
+
+.feature-links{
+    padding: 0.5rem;
+    width: 70%;
+    height: 150%;
+    box-shadow: 0 4px 8px -2px rgba(0,0,0,0.25);
+    /* background: #000000; */
+}
+
+.feature-links ul{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background: #BB1919; */
+}
+
+.feature-links ul a{
+    
+    list-style: none;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Nunito Sans', sans-serif;
+    color: black;
+    font-weight: 900;
+    /* color: #ffffff; */
+    margin-right: 30px;
+    width: 70%;
+    max-width: 400px;
+    cursor: pointer;
+    line-height: 60px;
+    margin-bottom: 2rem;
+    /* border-bottom: 1px solid black; */
+    border: 1px solid black;
+    /* box-shadow: 0 2px 4px -1px rgba(0,0,0,0.25); */
+    /* border: 1px solid black; */
+    
+}
+
+.feature-links ul  a ,
+.feature-links ul  a:after,
+.feature-links ul  a:before {
+  transition: all .5s;
+}
+
+.feature-links ul  a {
+    position:relative;
+    z-index: 1;
+}
+
+.feature-links ul  a:hover {
+    /* color: #000000; */
+    color: #ffffff;
+    border: none;
+}
+
+.feature-links ul  a:after {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    width: 100%;
+    height: 1px;
+    content: '.';
+    color: transparent;
+    background: #ffffff;
+    background: #000000;
+    visibility: none;
+    opacity: 0;
+    z-index: -1;
+}
+
+.feature-links ul a:hover:after {
+    opacity: 1;
+    visibility: visible;
+    height: 100%;
+}
+.feature-links ul a i{
+    font-size: 0.7rem;
+    margin-left: 0.2rem;
+}
+
+@media screen and (max-width: 1024px){
+    .feature-links{
+        width: 100%;
+        background: transparent;
+    }
+    .feature-links ul{
+        flex-direction: column;
+    }
+    
+    .feature-links ul a{
+        margin-bottom: 1rem;
+        border: 1px solid #ffffff;
+        background: #000000;
+        color: #ffffff;
+        padding: 0.2rem;
+        width: 100%;
+    }
+}

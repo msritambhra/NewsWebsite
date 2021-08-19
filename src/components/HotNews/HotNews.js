@@ -1,7 +1,7 @@
 import {useState, useEffect, useCallback} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
-import LoadingSpinner from '../UI/LoadingSpinner'
+import LoadingSpinner from '../../UI/LoadingSpinner'
 import styles from './HotNews.module.css'
 
 const HotNews = (props) =>{

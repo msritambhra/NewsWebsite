@@ -335,6 +335,49 @@
       "article_id": "2",
       "username": "Arthur",
       "id": 11
+    },
+    {
+      "comment_text": "Great Article",
+      "createdAt": "Mon Aug 16 2021 16:31:48 GMT+0530 (India Standard Time)",
+      "article_id": "22",
+      "username": "Jose",
+      "id": 12
+    },
+    {
+      "comment_text": "Great article!",
+      "createdAt": "Mon Aug 16 2021 17:21:52 GMT+0530 (India Standard Time)",
+      "article_id": "21",
+      "username": "Arthur",
+      "id": 13
+    },
+    {
+      "comment_text": "abc",
+      "createdAt": "Mon Aug 16 2021 17:32:24 GMT+0530 (India Standard Time)",
+      "article_id": "21",
+      "username": "Jose",
+      "id": 14
+    }
+  ],
+  "categories":[
+    {
+      "id": 0,
+      "category_name": "world"
+    },
+    {
+      "id": 1,
+      "category_name": "politics"
+    },
+    {
+      "id": 2,
+      "category_name": "technology"
+    },
+    {
+      "id": 3,
+      "category_name": "business"
+    },
+    {
+      "id": 4,
+      "category_name": "health"
     }
   ]
 }

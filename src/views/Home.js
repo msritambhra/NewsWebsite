@@ -1,4 +1,4 @@
-import HotNews from '../components/HotNews'
+import HotNews from '../components/HotNews/HotNews'
 import styles from './Home.module.css'
 
 const Home= () =>{

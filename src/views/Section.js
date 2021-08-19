@@ -1,7 +1,7 @@
 import {useParams} from 'react-router-dom';
-import HotNews from '../components/HotNews'
-import PriorityNewsList from '../components/PriorityNewsList';
-import RecentNewsList from '../components/RecentNewsList';
+import HotNews from '../components/HotNews/HotNews'
+import PriorityNewsList from '../components/PriorityNews/PriorityNewsList';
+import RecentNewsList from '../components/RecentNews/RecentNewsList';
 import styles from './Section.module.css'
 
 const Section = () => {

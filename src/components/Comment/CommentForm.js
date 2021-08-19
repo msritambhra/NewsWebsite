@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import useInput from '../hooks/use-input';
+import useInput from '../../hooks/use-input';
 import styles from './CommentForm.module.css'
 
 const isNotEmpty = (value) => value.trim() !== '';

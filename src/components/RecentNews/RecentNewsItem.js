@@ -14,7 +14,7 @@ const RecentNewsItem = (props) =>{
             <Link to={{pathname: `/article/${articleInfo.id}`}}>
                 <button className={styles['read-more-button']}>
                     Read More
-                    <span className={styles['read-more-icon']}><i class="fas fa-chevron-right"></i></span>
+                    <span className={styles['read-more-icon']}><i className="fas fa-chevron-right"></i></span>
                 </button>
             </Link>
         </div>

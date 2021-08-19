@@ -46,7 +46,7 @@ const RecentNewsList = (props) =>{
     return <>
         {
         articles.map((data,index)=>{
-            return <RecentNewsItem article={data}></RecentNewsItem>
+            return <RecentNewsItem key={index} article={data}></RecentNewsItem>
         })}
         </>
 }

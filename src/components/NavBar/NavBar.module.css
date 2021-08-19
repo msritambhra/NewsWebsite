@@ -119,7 +119,7 @@
         height: 100vh;
         position: absolute;
         top: 60px;
-        top: 100px;
+        /* top: 100px; */
         /* left: -110%; */
         opacity: 1;
     }
@@ -152,7 +152,7 @@
         display: block;
         position: absolute;
         top: 10px;
-        top: 60px;
+        /* top: 60px; */
         right: 10px;
         transform: translate(-200%, 50%); 
         font-size: 1.5rem;

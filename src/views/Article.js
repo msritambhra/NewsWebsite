@@ -1,9 +1,9 @@
 import {useState, useEffect, useCallback} from 'react'
 import {useParams} from 'react-router-dom';
 import axios from 'axios'
-import CommentBox from '../components/CommentBox'
-import PriorityNewsList from '../components/PriorityNewsList'
-import SocialShare from '../components/SocialShare'
+import CommentBox from '../components/Comment/CommentBox'
+import PriorityNewsList from '../components/PriorityNews/PriorityNewsList'
+import SocialShare from '../components/SocialShare/SocialShare'
 import LoadingSpinner from '../UI/LoadingSpinner'
 import styles from './Article.module.css'
 
