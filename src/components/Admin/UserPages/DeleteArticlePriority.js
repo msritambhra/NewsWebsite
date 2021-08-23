@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import useInput from '../../../hooks/use-input';
 import axios from 'axios';
 import styles from './CreateArticle.module.css'
@@ -21,19 +21,12 @@ const DeleteArticlePriority = () =>{
     useEffect(()=>{
     
         setError(false);
-        axios.get('http://localhost:3001/pList')
+        axios.get('http://localhost:3002/api/pList/allPList')
         .then(response => {
             setPLists(()=>(sortByKey(response.data,'name')));
-            //Addition Feature: Filter the articles based on PList selected
-            axios.get('http://localhost:3001/article-summaries')
-            .then(response => {
-                setArticles(()=>(sortByKey(response.data,'title')));
-            })
-            .catch(error => {
-                setError(error.message);
-            });
         })
         .catch(error => {
+            setPLists([]);
             setError(error.message);
         });
         
@@ -59,6 +52,24 @@ const DeleteArticlePriority = () =>{
         reset: resetArticle,
     } = useInput(isNotEmpty);
 
+    const pListRef = useRef();
+    const articleRef = useRef();
+
+    const getFilteredArticles = () => {
+        if (pListValue!=''){
+            axios.get(`http://localhost:3002/api/pList/${pListValue}/allArticles?limit=-1`)
+            .then(response => {
+                setArticles(()=>(sortByKey(response.data,'title')));
+            })
+            .catch(error => {
+                setArticles([]);
+                setError(error.message);
+            });
+        }
+        else{
+            setArticles([]);
+        }
+    }
 
     let formIsValid = false;
     if (pListIsValid && articleIsValid && !error) {
@@ -66,39 +77,22 @@ const DeleteArticlePriority = () =>{
     }
 
     const resetHandler = () =>{
+        pListRef.current.value='';
+        articleRef.current.value='';
         resetpList();
         resetArticle();
+        setError(false);
     }
 
     const deleteArticleFromPList = (articleValue, pListValue) =>{
-        // axios.post('http://localhost:3001/pList_articles', {
-        //     'pListId': pListValue,
-        //     'articleId': articleValue
-        // } ).then((response)=>{
-        //     setIsLoading(false);
-        //     resetHandler();
-        // }).catch((error)=>{
-        //     alert(error.message);
-        // });
-        axios.get('http://localhost:3001/pList_articles',{
-            params : {pListId: pListValue,
-            articleId: articleValue}
-        }).then((response)=>{
-            if (response.data.length===0){
-                alert('Selected Article does not belong to the selected Priority List.')
-                setIsLoading(false);
-                return;
-            }
-            axios.delete('http://localhost:3001/pList_articles/' + response.data[0].id).then(()=>{
-                setIsLoading(false);
-            }).catch((error)=>{
-                alert(error.message);
-                setIsLoading(false);
-            });
+
+        axios.delete(`http://localhost:3002/api/pList/delete/${pListValue+"_"+articleValue}`)
+        .then(()=>{
             setIsLoading(false);
+            resetHandler();
         }).catch((error)=>{
-            alert(error.message);
             setIsLoading(false);
+            setError(error.message);
         });
     }
 
@@ -120,17 +114,18 @@ const DeleteArticlePriority = () =>{
             <h1>Delete Article From Priority List</h1>
         </div> 
         <form onSubmit={submitHandler} className={styles.form}>
-            
+           
             <div className={styles['form-control']}>
                 <select name="pList" id="pList" 
                     defaultValue={pListValue}
-                    onChange = {pListChangeHandler}
-                    onChange={pListChangeHandler}
+                    ref={pListRef}
+                    onChange={getFilteredArticles}
+                    onInput={pListChangeHandler}
                     onBlur={pListBlurHandler}
                 >
                     <option value="">Select Priority list...</option>
                     {pLists.map(function(pList, index){ 
-                            return (<option key={index} value={pList.id}>{pList.name}</option>)
+                            return (<option key={index} value={pList.plistId}>{pList.name}</option>)
                         }
                     )}
                 </select>
@@ -140,13 +135,13 @@ const DeleteArticlePriority = () =>{
             <div className={styles['form-control']}>
                 <select name="article" id="article" 
                     defaultValue={articleValue}
-                    onChange = {articleChangeHandler}
+                    ref={articleRef}
                     onChange={articleChangeHandler}
                     onBlur={articleBlurHandler}
                 >
                     <option value="">Select Article to add...</option>
                     {articles.map(function(article, index){ 
-                            return (<option key={index} value={article.id}>{article.title}</option>)
+                            return (<option key={index} value={article.articleId}>{article.title}</option>)
                         }
                     )}
                 </select>
@@ -161,7 +156,10 @@ const DeleteArticlePriority = () =>{
                 }
                 {isLoading &&  <p>Submitting Data...</p>}
             </div>
-            {error && <p className={styles["error-text"]}>Failed to fetch Data. Please try to reload the page.</p>}
+            {error && <div className={styles["error-text"]}>
+                <p>Request to Server Failed. Please try to reload the page.</p>
+                <p>Error Mesaage: {error}</p>
+            </div>}
         </form>
     </div>
     }

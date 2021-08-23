@@ -22,17 +22,17 @@ const CreateArticle = () =>{
     useEffect(()=>{
     
         setError(false);
-        axios.get('http://localhost:3001/categories')
+        axios.get('http://localhost:3002/api/category/allCategory')
         .then(response => {
-            setCategoryList(()=>(sortByKey(response.data,'category_name')));
+            setCategoryList(()=>(sortByKey(response.data,'categoryName')));
         })
         .catch(error => {
             setError(error.message);
         })
 
-        axios.get('http://localhost:3001/authors')
+        axios.get('http://localhost:3002/api/author/allAuthors')
         .then(response => {
-            setAuthorList(()=>(sortByKey(response.data,'author_name')));
+            setAuthorList(()=>(sortByKey(response.data,'authorName')));
         })
         .catch(error => {
             setError(error.message);
@@ -109,7 +109,7 @@ const CreateArticle = () =>{
     const [isLoading, setIsLoading] = useState(false);
 
     const addArticle = (newArticle) =>{
-        axios.post('http://localhost:3001/article-summaries', newArticle).then((response)=>{
+        axios.post('http://localhost:3002/api/article/createArticle', newArticle).then((response)=>{
             setIsLoading(false);
             resetHandler();
         }).catch((error)=>{
@@ -125,6 +125,7 @@ const CreateArticle = () =>{
         resetContent();
         resetCategory();
         resetAuthor();
+        setError(false);
     }
     const submitHandler = (event)=>{
         event.preventDefault();
@@ -138,10 +139,9 @@ const CreateArticle = () =>{
         const newArticle = {
             "title": titleValue,
             "description": summaryValue,
-            "cateogry_id": categoryValue,
-            "author_id": authorValue,
-            "publishedAt": Date().toLocaleString(),
-            "image" : imageValue,
+            "categoryId": categoryValue,
+            "authorId": authorValue,
+            "imageUrl" : imageValue,
             "content": contentValue 
         }
         
@@ -187,7 +187,7 @@ const CreateArticle = () =>{
                 >
                     <option value="">Select category...</option>
                     {categoryList.map(function(categoryData, index){ 
-                                return (<option key={index} value={categoryData.id}>{categoryData.category_name}</option>)
+                                return (<option key={index} value={categoryData.categoryId}>{categoryData.categoryName}</option>)
                                 }
                     )}
                 </select>
@@ -202,7 +202,7 @@ const CreateArticle = () =>{
                 >
                     <option value="">Select author...</option>
                     {authorList.map(function(authorData, index){ 
-                                return (<option key={index} value={authorData.id}>{authorData.name}</option>)
+                                return (<option key={index} value={authorData.authorId}>{authorData.authorName}</option>)
                                 }
                     )}
                 </select>

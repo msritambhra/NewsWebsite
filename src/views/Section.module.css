@@ -77,6 +77,7 @@
 .sidebar{
     flex: 1 1 35%;
     height: 65vh;
+    height: 95vh;
     /* overflow: auto;  */
     min-width: 30ch;
     margin-bottom: 5vh;

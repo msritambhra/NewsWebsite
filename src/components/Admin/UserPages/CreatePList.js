@@ -6,13 +6,6 @@ import styles from './CreateArticle.module.css'
 const isNotEmpty = (value) => value.trim() !== '';
 const isSingleWord = (value) => (value.trim() !== '') && (value.trim().split(' ').length <= 1);
 
-const sortByKey= (array, key) => {
-    return array.sort(function(a, b) {
-        var x = a[key]; var y = b[key];
-        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-    });
-}
-
 const CreatePList = () =>{
     
     const [isLoading, setIsLoading] = useState(false);
@@ -47,7 +40,7 @@ const CreatePList = () =>{
     }
 
     const addPList = (nameValue, descriptionValue) =>{
-        axios.post('http://localhost:3001/pList', {
+        axios.post('http://localhost:3002/api/pList/createPList', {
             'name': nameValue.trim().toLowerCase(),
             'description': descriptionValue
         } ).then((response)=>{

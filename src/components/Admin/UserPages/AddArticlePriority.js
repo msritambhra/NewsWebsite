@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import useInput from '../../../hooks/use-input';
 import axios from 'axios';
 import styles from './CreateArticle.module.css'
@@ -21,21 +21,24 @@ const AddArticlePriority = () =>{
     useEffect(()=>{
     
         setError(false);
-        axios.get('http://localhost:3001/pList')
+        axios.get('http://localhost:3002/api/pList/allPList')
         .then(response => {
             setPLists(()=>(sortByKey(response.data,'name')));
         })
         .catch(error => {
+            setPLists([]);
             setError(error.message);
         });
 
-        axios.get('http://localhost:3001/article-summaries')
+        axios.get('http://localhost:3002/api/article/allArticles?limit=-1')
         .then(response => {
             setArticles(()=>(sortByKey(response.data,'title')));
         })
         .catch(error => {
+            setArticles([]);
             setError(error.message);
         });
+        
         
     }, []);
     
@@ -59,6 +62,8 @@ const AddArticlePriority = () =>{
         reset: resetArticle,
     } = useInput(isNotEmpty);
 
+    const pListRef = useRef();
+    const articleRef = useRef();
 
     let formIsValid = false;
     if (pListIsValid && articleIsValid && !error) {
@@ -66,20 +71,23 @@ const AddArticlePriority = () =>{
     }
 
     const resetHandler = () =>{
+        pListRef.current.value='';
+        articleRef.current.value='';
         resetpList();
         resetArticle();
+        setError(false);
     }
 
     const addArticleToPList = (articleValue, pListValue) =>{
-        axios.post('http://localhost:3001/pList_articles', {
-            'pListId': pListValue,
+        axios.post('http://localhost:3002/api/pList/addArticles', {
+            'priorityListId': pListValue,
             'articleId': articleValue
         } ).then((response)=>{
             setIsLoading(false);
             resetHandler();
         }).catch((error)=>{
-            alert(error.message);
             setIsLoading(false);
+            setError(error.message);
         });
 
     }
@@ -105,16 +113,15 @@ const AddArticlePriority = () =>{
         <form onSubmit={submitHandler} className={styles.form}>
             
             <div className={styles['form-control']}>
-                {/* <label for="category_name">Category: </label> */}
                 <select name="pList" id="pList" 
                     defaultValue={pListValue}
-                    onChange = {pListChangeHandler}
+                    ref = {pListRef}
                     onChange={pListChangeHandler}
                     onBlur={pListBlurHandler}
                 >
                     <option value="">Select Priority list...</option>
                     {pLists.map(function(pList, index){ 
-                            return (<option key={index} value={pList.id}>{pList.name}</option>)
+                            return (<option key={index} value={pList.plistId}>{pList.name}</option>)
                         }
                     )}
                 </select>
@@ -124,13 +131,13 @@ const AddArticlePriority = () =>{
             <div className={styles['form-control']}>
                 <select name="article" id="article" 
                     defaultValue={articleValue}
+                    ref={articleRef}
                     onChange = {articleChangeHandler}
-                    onChange={articleChangeHandler}
                     onBlur={articleBlurHandler}
                 >
                     <option value="">Select Article to add...</option>
                     {articles.map(function(article, index){ 
-                            return (<option key={index} value={article.id}>{article.title}</option>)
+                            return (<option key={index} value={article.articleId}>{article.title}</option>)
                         }
                     )}
                 </select>
