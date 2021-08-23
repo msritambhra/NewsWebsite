@@ -16,11 +16,33 @@ const PriorityNewsList = (props) =>{
         setError(null);
         try{
             let response;
-            if(props.section===undefined){
-                response = await axios.get('http://localhost:3001/article-summaries?priority=1&_sort=publishedAt&_limit=10');
+            // if(props.section===undefined){
+            //     response = await axios.get('http://localhost:3001/article-summaries?priority=1&_sort=publishedAt&_limit=10');
+            // }
+            // else{
+            //     response = await axios.get(`http://localhost:3001/article-summaries?category_name=${props.section}&priority=1&_sort=publishedAt&_limit=10`);
+            // }
+
+            if (props.section===undefined){
+                response = await axios.get('http://localhost:3002/api/pList/38/allArticles?limit=-1');
+            }
+            else if(props.section=="world"){
+                response = await axios.get('http://localhost:3002/api/pList/39/allArticles?limit=-1')
+            }
+            else if(props.section=="politics"){
+                response = await axios.get('http://localhost:3002/api/pList/40/allArticles?limit=-1')
+            }
+            else if(props.section=="technology"){
+                response = await axios.get('http://localhost:3002/api/pList/41/allArticles?limit=-1')
+            }
+            else if(props.section=="business"){
+                response = await axios.get('http://localhost:3002/api/pList/42/allArticles?limit=-1')
+            }
+            else if(props.section=="health"){
+                response = await axios.get('http://localhost:3002/api/pList/43/allArticles?limit=-1')
             }
             else{
-                response = await axios.get(`http://localhost:3001/article-summaries?category_name=${props.section}&priority=1&_sort=publishedAt&_limit=10`);
+                throw new Error('Section not defined!')
             }
 
             if(response.data.length<1){
@@ -45,10 +67,10 @@ const PriorityNewsList = (props) =>{
     if (error){
         return <p>{error}</p>
     }
-
+    
     return <div className={styles.priority_list}>
         {articles.map((data,index)=>{
-            return <PriorityListItem key={data.id} article={data}></PriorityListItem>
+            return <PriorityListItem key={index} article={data}></PriorityListItem>
         })}
     </div>
     

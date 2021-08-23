@@ -10,10 +10,10 @@ const Comment = (props) =>{
         //     <a href="#" className="comment-footer-delete" onClick={this._deleteComment}>Delete Comment</a>
         //   </div> */}
         // </div>
-        <div class={styles["dialogbox"]}>
-          <div class={styles["body"]}>
-            <span class={`${styles['tip']} ${styles['tip-left']}`}></span>
-            <div class={styles["message"]}>
+        <div className={styles["dialogbox"]}>
+          <div className={styles["body"]}>
+            <span className={`${styles['tip']} ${styles['tip-left']}`}></span>
+            <div className={styles["message"]}>
               <span><b>{props.user}</b>: {props.comment_text}</span>
             </div>
           </div>

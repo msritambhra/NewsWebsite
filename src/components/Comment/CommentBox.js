@@ -20,8 +20,14 @@ const CommentBox = () =>{
         let response;
         try{
 
-            response = await axios.get(`http://localhost:3001/comments?article_id=${params.article_id}`);
-            await setComments(()=>response.data);
+            // response = await axios.get(`http://localhost:3001/comments?article_id=${params.article_id}`);
+            // await setComments(()=>response.data);
+            axios.get(`http://localhost:3001/comments?article_id=${params.article_id}`).then((response)=>{
+                setComments(()=>response.data);
+            }).catch((err)=>{
+                alert(err.message)
+                throw new Error(err.message)
+            });
 
         }catch(error){
             setError(error.message);
@@ -29,6 +35,7 @@ const CommentBox = () =>{
         }
         
     }, [params.article_id]);
+
 
     useEffect(()=>{
         fetchComments();

@@ -13,6 +13,9 @@ import AuthForm from './components/Admin/Auth/AuthForm';
 import AuthContext from './store/auth-context';
 import AdminHome from './components/Admin/UserPages/AdminHome';
 import CreateArticle from './components/Admin/UserPages/CreateArticle'
+import AddArticlePriority from './components/Admin/UserPages/AddArticlePriority'
+import CreatePList from './components/Admin/UserPages/CreatePList';
+import DeleteArticlePriority from './components/Admin/UserPages/DeleteArticlePriority';
 
 const App = () => {
   const authCtx = useContext(AuthContext);
@@ -117,6 +120,33 @@ const App = () => {
               </header>
               <div className={styles.content}>
                 {authCtx.isLoggedIn && <CreateArticle></CreateArticle>}
+                {!authCtx.isLoggedIn && <Redirect to='/admin/auth' />}
+              </div>
+            </Route>
+            <Route path='/admin/add-priority-article'>
+              <header className={styles.header}>
+                <AdminNav></AdminNav>
+              </header>
+              <div className={styles.content}>
+                {authCtx.isLoggedIn && <AddArticlePriority></AddArticlePriority>}
+                {!authCtx.isLoggedIn && <Redirect to='/admin/auth' />}
+              </div>
+            </Route>
+            <Route path='/admin/delete-priority-article'>
+              <header className={styles.header}>
+                <AdminNav></AdminNav>
+              </header>
+              <div className={styles.content}>
+                {authCtx.isLoggedIn && <DeleteArticlePriority></DeleteArticlePriority>}
+                {!authCtx.isLoggedIn && <Redirect to='/admin/auth' />}
+              </div>
+            </Route>
+            <Route path='/admin/create-plist'>
+              <header className={styles.header}>
+                <AdminNav></AdminNav>
+              </header>
+              <div className={styles.content}>
+                {authCtx.isLoggedIn && <CreatePList></CreatePList>}
                 {!authCtx.isLoggedIn && <Redirect to='/admin/auth' />}
               </div>
             </Route>

@@ -16,10 +16,12 @@ const RecentNewsList = (props) =>{
         try{
             let response;
             if(props.section===undefined){
-                response = await axios.get('http://localhost:3001/article-summaries?priority=0&_sort=publishedAt&_limit=3');
+                response = await axios.get('http://localhost:3002/api/article/allArticles?limit=3');
+                    // 'http://localhost:3001/article-summaries?priority=0&_sort=publishedAt&_limit=3');
             }
             else{
-                response = await axios.get(`http://localhost:3001/article-summaries?category_name=${props.section}&priority=0&_sort=publishedAt&_limit=3`);
+                response = await axios.get(`http://localhost:3002/api/category/allArticles/${props.section}?limit=3`);
+                // http://localhost:3001/article-summaries?category_name=&priority=0&_sort=publishedAt&_limit=3`);
             }
 
             if(response.data.length<1){

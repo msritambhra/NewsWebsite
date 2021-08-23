@@ -1,12 +1,20 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import useInput from '../../../hooks/use-input';
 import axios from 'axios';
 import styles from './CreateArticle.module.css'
 
 const isNotEmpty = (value) => value.trim() !== '';
 
+const sortByKey= (array, key) => {
+    return array.sort(function(a, b) {
+        var x = a[key]; var y = b[key];
+        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+});
+}
+
 const CreateArticle = () =>{
     const [categoryList, setCategoryList] = useState([]);
+    const [authorList, setAuthorList] = useState([]);
 
     const [error, setError] = useState(false);
 
@@ -16,7 +24,15 @@ const CreateArticle = () =>{
         setError(false);
         axios.get('http://localhost:3001/categories')
         .then(response => {
-            setCategoryList(()=>response.data);
+            setCategoryList(()=>(sortByKey(response.data,'category_name')));
+        })
+        .catch(error => {
+            setError(error.message);
+        })
+
+        axios.get('http://localhost:3001/authors')
+        .then(response => {
+            setAuthorList(()=>(sortByKey(response.data,'author_name')));
         })
         .catch(error => {
             setError(error.message);
@@ -59,6 +75,15 @@ const CreateArticle = () =>{
     } = useInput(isNotEmpty);
 
     const {
+        value: authorValue,
+        isValid: authorIsValid,
+        hasError: authorHasError,
+        valueChangeHandler: authorChangeHandler,
+        inputBlurHandler: authorBlurHandler,
+        reset: resetAuthor,
+    } = useInput(isNotEmpty);
+
+    const {
         value: imageValue,
         isValid: imageIsValid,
         hasError: imageHasError,
@@ -77,7 +102,7 @@ const CreateArticle = () =>{
     } = useInput(isNotEmpty);
 
     let formIsValid = false;
-    if (contentIsValid && imageIsValid && summaryIsValid && titleIsValid && categoryIsValid) {
+    if (contentIsValid && imageIsValid && summaryIsValid && titleIsValid && categoryIsValid && authorIsValid) {
       formIsValid = true;
     }
 
@@ -86,8 +111,10 @@ const CreateArticle = () =>{
     const addArticle = (newArticle) =>{
         axios.post('http://localhost:3001/article-summaries', newArticle).then((response)=>{
             setIsLoading(false);
+            resetHandler();
         }).catch((error)=>{
-            alert(error.message)
+            alert(error.message);
+            setIsLoading(false);
         });
     }
 
@@ -97,6 +124,7 @@ const CreateArticle = () =>{
         resetImage();
         resetContent();
         resetCategory();
+        resetAuthor();
     }
     const submitHandler = (event)=>{
         event.preventDefault();
@@ -110,15 +138,14 @@ const CreateArticle = () =>{
         const newArticle = {
             "title": titleValue,
             "description": summaryValue,
-            "cateogry_name": categoryValue,
+            "cateogry_id": categoryValue,
+            "author_id": authorValue,
             "publishedAt": Date().toLocaleString(),
             "image" : imageValue,
             "content": contentValue 
         }
         
         addArticle(newArticle);
-
-        resetHandler();
     }
     
     return <div className={styles.container}>
@@ -152,8 +179,7 @@ const CreateArticle = () =>{
                 {summaryHasError && <p className={styles["error-text"]}>Please enter a valid summary.</p>}
             </div>
             <div className={styles['form-control']}>
-                {/* <label for="category_name">Category: </label> */}
-                <select name="category_name" id="category_name" 
+                <select name="category_id" id="category_id" 
                     defaultValue={categoryValue}
                     onChange = {categoryChangeHandler}
                     onChange={categoryChangeHandler}
@@ -161,17 +187,26 @@ const CreateArticle = () =>{
                 >
                     <option value="">Select category...</option>
                     {categoryList.map(function(categoryData, index){ 
-                                return (<option key={index} value={categoryData.category_name}>{categoryData.category_name}</option>)
+                                return (<option key={index} value={categoryData.id}>{categoryData.category_name}</option>)
                                 }
                     )}
-                    {/* <option value="world">World</option>
-                    <option value="politics">Politics</option>
-                    <option value="technology">Technology</option>
-                    <option value="business">Business</option>
-                    <option value="health">Health</option> */}
                 </select>
                 {categoryHasError && <p className={styles["error-text"]}>Please select a valid cateogry.</p>}
-                {error && <p className={styles["error-text"]}>Failed to fetch Category List. Please try to reload the page.</p>}
+            </div>
+            <div className={styles['form-control']}>
+                <select name="author_id" id="author_id" 
+                    defaultValue={authorValue}
+                    onChange = {authorChangeHandler}
+                    onChange={authorChangeHandler}
+                    onBlur={authorBlurHandler}
+                >
+                    <option value="">Select author...</option>
+                    {authorList.map(function(authorData, index){ 
+                                return (<option key={index} value={authorData.id}>{authorData.name}</option>)
+                                }
+                    )}
+                </select>
+                {categoryHasError && <p className={styles["error-text"]}>Please select a valid cateogry.</p>}
             </div>
             <div className={styles['form-control']}>
                 <input 
@@ -206,6 +241,7 @@ const CreateArticle = () =>{
                 }
                 {isLoading &&  <p>Submitting Data...</p>}
             </div>
+            {error && <p className={styles["error-text"]}>Failed to fetch Data. Please try to reload the page.</p>}
         </form>
     </div>
 }

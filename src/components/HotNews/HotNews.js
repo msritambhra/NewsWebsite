@@ -15,12 +15,34 @@ const HotNews = (props) =>{
         try{
             let response;
             // Case: Home Page
-            if(props.section===undefined){
-                response = await axios.get('http://localhost:3001/article-summaries?priority=1&_sort=publishedAt&_limit=1')
+            // if(props.section===undefined){
+            //     response = await axios.get('http://localhost:3001/article-summaries?priority=1&_sort=publishedAt&_limit=1')
+            // }
+            // // Case: Section Page 
+            // else{
+            //     response = await axios.get(`http://localhost:3001/article-summaries?category_name=${props.section}&priority=1&_sort=publishedAt&_limit=1`)
+            // }
+
+            if (props.section===undefined){
+                response = await axios.get('http://localhost:3002/api/pList/44/allArticles?limit=1');
             }
-            // Case: Section Page 
+            else if(props.section==="world"){
+                response = await axios.get('http://localhost:3002/api/pList/45/allArticles?limit=1')
+            }
+            else if(props.section==="politics"){
+                response = await axios.get('http://localhost:3002/api/pList/46/allArticles?limit=1')
+            }
+            else if(props.section==="technology"){
+                response = await axios.get('http://localhost:3002/api/pList/47/allArticles?limit=1')
+            }
+            else if(props.section==="business"){
+                response = await axios.get('http://localhost:3002/api/pList/49/allArticles?limit=1')
+            }
+            else if(props.section==="health"){
+                response = await axios.get('http://localhost:3002/api/pList/48/allArticles?limit=1')
+            }
             else{
-                response = await axios.get(`http://localhost:3001/article-summaries?category_name=${props.section}&priority=1&_sort=publishedAt&_limit=1`)
+                throw new Error('Section not defined!')
             }
             // No data in response
             if(response.data.length<1){
@@ -44,9 +66,9 @@ const HotNews = (props) =>{
         </div>
     }
     
-    return ( <Link to={{pathname: `/article/${article.id}`}}><div className={styles.container}>
+    return ( <Link to={{pathname: `/article/${article.articleId}`}}><div className={styles.container}>
                    
-                    <img src={article.image} alt={article.title}/>                
+                    <img src={article.imageUrl} alt={article.title}/>                
                     <h2 className={styles["card-title"]}>{article.title}</h2>
                     <p className={styles["card-desc"]}>{article.description}</p>
   

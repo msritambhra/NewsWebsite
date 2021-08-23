@@ -22,7 +22,9 @@ const Article = () =>{
         setError(false);
         let response;
         try{
-            response = await axios.get(`http://localhost:3001/article-summaries/${params.article_id}`);
+            response = await axios.get(`http://localhost:3002/api/article/${params.article_id}`);
+                // `http://localhost:3002/api/article/${params.article_id}`);
+                // `http://localhost:3001/article-summaries/${params.article_id}`);
             /* Handle 404 Response */
             if(response.data.length<1){
                 throw new Error('No Data Found!')
@@ -52,17 +54,17 @@ const Article = () =>{
         <main className={`${styles.main} ${styles.col}`}>
             <section className={styles.article}>
                 <article>
-                    <div className={styles.article__category}>{article.category_name}</div>
+                    <div className={styles.article__category}>{article.categoryName}</div>
                     <h1 className={styles.aticle__title}><span>{article.title}</span></h1>
                     <div className={styles.sub_header}>
-                        <div className={styles.article__date}>{article.publishedAt}</div>
+                        <div className={styles.article__date}>{article.createdAt}</div>
                         {/* Add -Share on social Media -Star*/}
                         <div className={styles.social_share}>
-                            <SocialShare title={article.title} url={window.location.href} image={article.image}></SocialShare>
+                            <SocialShare title={article.title} url={window.location.href} image={article.imageUrl}></SocialShare>
                         </div>
                     </div>
                     <div className={styles.article__image}>
-                        <img src={article.image} alt={article.title}></img>
+                        <img src={article.imageUrl} alt={article.title}></img>
                     </div>
                     <div className={styles.article__content} dangerouslySetInnerHTML={{ __html: article.content }}></div>
                 </article>
@@ -75,7 +77,7 @@ const Article = () =>{
             <div className={styles['heading-container']}>
                 <span>Recommended Articles</span>
             </div>
-            <PriorityNewsList section={article.category_name}></PriorityNewsList>
+            <PriorityNewsList section={article.categoryName}></PriorityNewsList>
         </aside>
 
     </div>);

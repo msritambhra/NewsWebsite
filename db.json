@@ -356,9 +356,16 @@
       "article_id": "21",
       "username": "Jose",
       "id": 14
+    },
+    {
+      "comment_text": "nice",
+      "createdAt": "Sun Aug 22 2021 03:27:31 GMT+0530 (India Standard Time)",
+      "article_id": "26",
+      "username": "jose",
+      "id": 15
     }
   ],
-  "categories":[
+  "categories": [
     {
       "id": 0,
       "category_name": "world"
@@ -378,6 +385,210 @@
     {
       "id": 4,
       "category_name": "health"
+    }
+  ],
+  "pList": [
+    {
+      "id": 0,
+      "name": "home"
+    },
+    {
+      "id": 1,
+      "name": "world"
+    },
+    {
+      "id": 2,
+      "name": "technology"
+    },
+    {
+      "id": 3,
+      "name": "politics"
+    },
+    {
+      "id": 4,
+      "name": "business"
+    },
+    {
+      "id": 5,
+      "name": "health"
+    },
+    {
+      "id": 6,
+      "name": "breaking"
+    }
+  ],
+  "pList_articles": [
+    {
+      "id": 0,
+      "pListId": 0,
+      "articleId": 0
+    },
+    {
+      "id": 1,
+      "pListId": 0,
+      "articleId": 1
+    },
+    {
+      "id": 2,
+      "pListId": 0,
+      "articleId": 3
+    },
+    {
+      "id": 3,
+      "pListId": 0,
+      "articleId": 4
+    },
+    {
+      "id": 4,
+      "pListId": 0,
+      "articleId": 5
+    },
+    {
+      "id": 5,
+      "pListId": 1,
+      "articleId": 6
+    },
+    {
+      "id": 6,
+      "pListId": 1,
+      "articleId": 7
+    },
+    {
+      "id": 7,
+      "pListId": 1,
+      "articleId": 8
+    },
+    {
+      "id": 8,
+      "pListId": 1,
+      "articleId": 9
+    },
+    {
+      "id": 9,
+      "pListId": 1,
+      "articleId": 10
+    },
+    {
+      "id": 10,
+      "pListId": 2,
+      "articleId": 11
+    },
+    {
+      "id": 11,
+      "pListId": 2,
+      "articleId": 12
+    },
+    {
+      "id": 12,
+      "pListId": 2,
+      "articleId": 13
+    },
+    {
+      "id": 13,
+      "pListId": 2,
+      "articleId": 14
+    },
+    {
+      "id": 14,
+      "pListId": 3,
+      "articleId": 15
+    },
+    {
+      "id": 15,
+      "pListId": 3,
+      "articleId": 16
+    },
+    {
+      "id": 16,
+      "pListId": 3,
+      "articleId": 17
+    },
+    {
+      "id": 16,
+      "pListId": 3,
+      "articleId": 18
+    },
+    {
+      "id": 17,
+      "pListId": 4,
+      "articleId": 19
+    },
+    {
+      "id": 18,
+      "pListId": 4,
+      "articleId": 20
+    },
+    {
+      "id": 19,
+      "pListId": 4,
+      "articleId": 21
+    },
+    {
+      "id": 20,
+      "pListId": 4,
+      "articleId": 22
+    },
+    {
+      "id": 21,
+      "pListId": 5,
+      "articleId": 21
+    },
+    {
+      "id": 22,
+      "pListId": 5,
+      "articleId": 22
+    },
+    {
+      "id": 23,
+      "pListId": 5,
+      "articleId": 6
+    },
+    {
+      "id": 24,
+      "pListId": 5,
+      "articleId": 4
+    },
+    {
+      "id": 26,
+      "pListId": 6,
+      "articleId": 23
+    },
+    {
+      "id": 27,
+      "pListId": 6,
+      "articleId": 24
+    },
+    {
+      "id": 28,
+      "pListId": 6,
+      "articleId": 25
+    },
+    {
+      "pListId": "5",
+      "articleId": "23",
+      "id": 29
+    }
+  ],
+  "authors": [
+    {
+      "id": 0,
+      "name": "Chase Johnson"
+    },
+    {
+      "id": 1,
+      "name": "Selena Nicholson"
+    },
+    {
+      "id": 2,
+      "name": "Marty Moore"
+    },
+    {
+      "id": 3,
+      "name": "Kyla Becker"
+    },
+    {
+      "id": 4,
+      "name": "Dominic Hayes"
     }
   ]
 }
