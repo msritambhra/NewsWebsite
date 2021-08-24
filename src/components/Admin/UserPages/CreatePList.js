@@ -4,7 +4,8 @@ import axios from 'axios';
 import styles from './CreateArticle.module.css'
 
 const isNotEmpty = (value) => value.trim() !== '';
-const isSingleWord = (value) => (value.trim() !== '') && (value.trim().split(' ').length <= 1);
+// const isSingleWord = (value) => (value.trim() !== '') && (value.trim().split(' ').length <= 1);
+const is255Words = (value) => (value.trim() !== '') && (value.trim().split(' ').length <= 255);
 
 const CreatePList = () =>{
     
@@ -17,7 +18,7 @@ const CreatePList = () =>{
         valueChangeHandler: nameChangeHandler,
         inputBlurHandler: nameBlurHandler,
         reset: resetName,
-    } = useInput(isSingleWord);
+    } = useInput(isNotEmpty);
 
     const {
         value: descriptionValue,
@@ -26,7 +27,7 @@ const CreatePList = () =>{
         valueChangeHandler: descriptionChangeHandler,
         inputBlurHandler:descriptionBlurHandler,
         reset: resetDescription,
-    } = useInput(isNotEmpty);
+    } = useInput(is255Words);
 
 
     let formIsValid = false;
@@ -90,7 +91,7 @@ const CreatePList = () =>{
                 <textarea 
                     name="description"
                     id="description" 
-                    placeholder="Description (max 50 words)" 
+                    placeholder="Description (upto 255 words)" 
                     rows="2"
                     required 
                     value={descriptionValue}

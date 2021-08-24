@@ -1,5 +1,5 @@
 import styles from './SocialShare.module.css'
-
+import '../../font-awesome-icons/style.css'
 
 const SocialShare = (props) =>{
     const url = encodeURIComponent(props.url);
@@ -11,32 +11,19 @@ const SocialShare = (props) =>{
     const whatsappURL = "https://api.whatsapp.com/send?text=" + title + " " + url
 
     return <div className={styles['social-share-container']}>
-        <a href={twitterURL} className={styles.twitter} target="_blank">
-            <i className="fab fa-twitter-square"></i>
+        <a href={twitterURL} className={styles.twitter} target="_blank" rel="noopener noreferrer">
+            <i className="fab fa-twitter-square icon-twitter-square"></i>
         </a>
-        <a href={facebookURL} className={styles.facebook} target="_blank">
-            <i className="fab fa-facebook-square"></i>
+        <a href={facebookURL} className={styles.facebook} target="_blank" rel="noopener noreferrer">
+            <i className="fab fa-facebook-square icon-facebook-square"></i>
         </a>
-        <a href={linkedinURL} className={styles.linkedin} target="_blank"> {/* Setup meta tags */}
-            <i className="fab fa-linkedin"></i>
+        <a href={linkedinURL} className={styles.linkedin} target="_blank" rel="noopener noreferrer"> {/* Setup meta tags */}
+            <i className="fab fa-linkedin icon-linkedin-square"></i>
         </a>
-        <a href={whatsappURL} className={styles.whatsapp} target="_blank">
-            <i className="fab fa-whatsapp-square"></i>
+        <a href={whatsappURL} className={styles.whatsapp} target="_blank" rel="noopener noreferrer">
+            <i className="fab fa-whatsapp-square icon-whatsapp"></i>
         </a>
-        {/* <a className={styles.copy} onClick={() => {navigator.clipboard.writeText(props.url);}}>
-            <i className="fas fa-link"></i>
-            <span className={styles.tooltip}></span>
-        </a> */}
     </div>
 }
 
 export default SocialShare;
-
-/* share URLs
-
-Whatsapp: https://api.whatsapp.com/send?text=[post-title] [post-url]
-Facebook: https://www.facebook.com/sharer.php?u=[post-url]
-Twitter: https://twitter.com/share?url=[post-url]&text=[post-title]&via=[via]&hashtags=[hashtags]
-Linkedin: https://www.linkedin.com/shareArticle?url=[post-url]&title=[post-title]
-
-*/

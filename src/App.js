@@ -1,13 +1,13 @@
 import styles from './App.module.css'
+
 import { Route, Redirect, Switch } from 'react-router-dom';
-import NavBar from './components/NavBar/NavBar';
 import { useContext } from 'react';
+
+import NavBar from './components/NavBar/NavBar';
 import Section from './views/Section';
 import Article from './views/Article';
 import NotFound from './views/NotFound';
-import Admin from './views/Admin';
 import LogoHeader from './components/NavBar/LogoHeader';
-import AuthHeader from './components/AuthHeader';
 import AdminNav from './components/Admin/Layout/AdminNav';
 import AuthForm from './components/Admin/Auth/AuthForm';
 import AuthContext from './store/auth-context';
@@ -18,40 +18,9 @@ import CreatePList from './components/Admin/UserPages/CreatePList';
 import DeleteArticlePriority from './components/Admin/UserPages/DeleteArticlePriority';
 
 const App = () => {
-  const authCtx = useContext(AuthContext);
-  console.log(authCtx.isLoggedIn)
-    // return(
-    //   <div>
-    //     <header className={styles.header}>
-    //       <NavBar></NavBar>
-    //     </header>
-    //     <div className={styles.content}>
-    //       <Switch>
-    //         <Route exact path="/">
-    //           <Redirect to="/home"></Redirect>
-    //         </Route>
-    //         <Route path="/home">
-    //           {/* <Home></Home> */}
-    //           <Section></Section>
-    //         </Route>
-    //         <Route exact path="/section/:section_name">
-    //           <Section></Section>
-    //         </Route>
-    //         <Route exact path="/article/:article_id">
-    //           <Article></Article>
-    //         </Route>
-    //         <Route exact path="/admin">
-    //           <Admin></Admin>
-    //         </Route>
-    //         <Route path="*">
-    //           <NotFound></NotFound>
-    //         </Route>
-    //       </Switch>
-    //     </div>
-    // </div>
+    const authCtx = useContext(AuthContext);
+    
     return(<div>
-        
-        
           <Switch>
             <Route exact path="/">
               <header className={styles.header}>
@@ -78,7 +47,7 @@ const App = () => {
                 <Section></Section>
               </div>
             </Route>
-            <Route exact path="/article/:article_id">
+            <Route exact path="/article/:article_id/:article_title">
               <header className={styles.header}>
                   <NavBar></NavBar>
               </header>

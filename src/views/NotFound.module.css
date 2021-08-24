@@ -28,7 +28,6 @@
     border-radius: 4px;
     padding: 1rem;
     cursor: pointer;
-    /* transition: 0.5s ease; */
 }
 
 .not-found-home-button button:hover{

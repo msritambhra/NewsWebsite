@@ -1,5 +1,4 @@
 .comment {
-    /* border-top: 0.125rem solid #000; */
     border-top: 1px solid rgb(70, 68, 68);;
     
 }
@@ -9,13 +8,6 @@
     margin-left: 1rem;
   }
 
-/* .tip {
-    width: 0px;
-    height: 0px;
-    position: absolute;
-    background: transparent;
-    border: 8px solid rgba(41, 41, 41, 0.7);
-} */
 
 .tip-left {
     top: 10px;
@@ -33,7 +25,6 @@
     padding: 5px;
     background-color: #ffffff;
     border-radius: 3px;
-    /* border: 2px solid rgba(41, 41, 41, 0.7); */
     box-shadow:  0rem 0rem 0.1rem 0.1rem rgba(0, 0, 0, 0.1);
 }
 

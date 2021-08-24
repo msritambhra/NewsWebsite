@@ -1,21 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap');
-
 .recent{
     flex: 1 1 30%;
     color: #fff;
-    /* border-bottom: 1px solid rgba(70, 68, 68,0.5);; */
     margin: 0.3rem;
-    /* padding: 0.1rem; */
-    /* max-width: 300px; */
     background:transparent;
-
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
 .recent:hover{
-    /* box-shadow:  0.1rem 0.1rem 0.3rem 0.3rem rgba(0, 0, 0, 0.1); */
     border-bottom: 5px solid #BB1919;
 
 }
@@ -31,18 +24,15 @@
     width: 30%;
     height: 80px;
     display: inline-block;
-    /* border: 1px solid black; */
 }
 
 .item-col-2{
     width: 70%;
     height: 80px;
     display: inline-block;
-    /* border: 1px solid black; */
     margin: 0 auto;
     position: relative;
     margin-left: 8px;
-    font-family: 'Nunito Sans', sans-serif;
 }
 
 a{
@@ -58,7 +48,6 @@ a{
     overflow: hidden;
     position: relative;
     max-height: 30px;
-    /* text-align: justify; */
     padding-right: 5px;
 }
 
@@ -77,6 +66,7 @@ a{
     margin-top: 0.2em;
     background: white;
   }
+
 .article__category{
     font-size: 0.6rem;
     font-weight:600;
@@ -104,8 +94,7 @@ a{
     cursor: pointer;
     border-radius: 0.4rem;
     max-width: 150px;
-    /* left: 50%;
-    transform: translateX(-50%); */
+    overflow: hidden;
 }
 
 .read-more-button:hover{
@@ -116,6 +105,20 @@ a{
 .read-more-icon{
     font-size: 0.7rem;
     margin-left: 0.2rem;
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+@media screen and (max-width: 1235px){
+    .read-more-button{
+        width: 100%;
+        font-size: 0.6rem;
+    }
+    .read-more-icon{
+        font-size: 0.6rem;
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -144,3 +147,5 @@ a{
         font-size: 0.6rem;
     }
 }
+
+

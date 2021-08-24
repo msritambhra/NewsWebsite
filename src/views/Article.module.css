@@ -1,19 +1,16 @@
-/* Styles of the whole flexbox containing both columns */
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap');
 
 .main-sidebar{
     display: flex;
     flex-direction: row;
     flex-wrap:wrap;
-    /* Montserrat,Verdana,arial,sans-serif; */
     font-family: 'Nunito Sans', sans-serif;
+    font-weight: 100;
 }
 
-/* Common styles of each column */
 .col{
     padding: 1rem;
     min-width: 25ch;
-    /* border: 1px solid black; */
 }
 
 /* ----------------------------------- Main & sidebar -----------------------------------*/
@@ -81,18 +78,14 @@ article{
     font-weight: 600;
     display: inline-block;
     color: rgba(0,0,0,0.7);
-    /* color: rgba(255,255,255,0.8); */
 }
 
 .social_share{
-    /* font-size: 1rem;
-    font-weight: 600; */
     float: right;
 }
 
 .article__image{
     margin: 1rem 0;
-    /* height: 50vh; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -116,10 +109,6 @@ article{
 
 .comment-container{
     height: 100%;
-    /* border: 1px solid black; */
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
 }
 
 /* ----- Loading spinner Position -------*/

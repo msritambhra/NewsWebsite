@@ -39,13 +39,6 @@ const CreateArticle = () =>{
         })
         
     }, []);
-
-    
-    // const [categoryValue, setCategoryValue] = useState('');
-
-    // const categoryChangeHandler = (event) =>{
-    //     setCategoryValue(event.target.value)
-    // }
     
     const {
         value: titleValue,

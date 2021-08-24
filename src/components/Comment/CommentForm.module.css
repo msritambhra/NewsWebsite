@@ -12,7 +12,6 @@
 
 .comment-fields input,.comment-fields textarea{
     border: none;
-    /* border-bottom: 1px solid black; */
     border-bottom: 1px solid rgb(70, 68, 68);
     font-size: 0.85rem;
     padding: 0.25rem 0;
@@ -45,9 +44,6 @@
   background-color: #ffffff;
 }
 
-/* .comment-fields textarea{
-    font-style: italic;
-} */
 
 .comment-submit-button{
     background-color: #BB1919;

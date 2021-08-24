@@ -8,7 +8,7 @@ const HotNews = (props) =>{
     const [article, setArticle] = useState('');
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(null);
-
+    
     const fetchArticleHandler = useCallback(async ()=>{
         setIsLoading(true);
         setError(null);
@@ -66,7 +66,7 @@ const HotNews = (props) =>{
         </div>
     }
     
-    return ( <Link to={{pathname: `/article/${article.articleId}`}}><div className={styles.container}>
+    return ( <Link to={{pathname: `/article/${article.articleId}/${article.title}`}}><div className={styles.container}>
                    
                     <img src={article.imageUrl} alt={article.title}/>                
                     <h2 className={styles["card-title"]}>{article.title}</h2>

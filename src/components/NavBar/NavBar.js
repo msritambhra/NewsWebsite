@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import styles from './NavBar.module.css'
+import '../../font-awesome-icons/style.css'
 
 const NavBar = () =>{
     const [toggle, setToggle] = useState(false);
@@ -35,7 +36,8 @@ const NavBar = () =>{
                 </li>
             </ul>
             <div className={styles["nav-icon"]} onClick={navToggleHandler}>
-                <i className={toggle ? "fas fa-times":  "fas fa-bars"}></i>
+                {/* <i className={toggle ? "fas fa-times":  "fas fa-bars"}></i> */}
+                <i className={toggle ? "icon-times":  "icon-bars"}></i>
             </div>
         </div>
         

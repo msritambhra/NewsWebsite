@@ -9,7 +9,7 @@ const PriorityListItem = (props) =>{
     const DateString = articleDateComponents[0] + ', ' + articleDateComponents[1] + ' ' 
     + articleDateComponents[2] + ', ' + articleDateComponents[3]
 
-    return (<Link to={{pathname: `/article/${articleInfo.articleId}`}}>
+    return (<Link to={{pathname: `/article/${articleInfo.articleId}/${articleInfo.title}`}}>
     <div className={styles['priority-card']}>
         
         <div className={`${styles["item-col-2"]}`}>

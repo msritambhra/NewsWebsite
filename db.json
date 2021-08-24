@@ -356,6 +356,132 @@
       "article_id": "21",
       "username": "Jose",
       "id": 14
+    },
+    {
+      "comment_text": "<script>alert('Hello');<script>",
+      "createdAt": "Tue Aug 24 2021 14:25:59 GMT+0530 (India Standard Time)",
+      "article_id": "30",
+      "username": "jose",
+      "id": 15
+    },
+    {
+      "comment_text": "Hi",
+      "createdAt": "Tue Aug 24 2021 14:27:44 GMT+0530 (India Standard Time)",
+      "article_id": "30",
+      "username": "nate",
+      "id": 16
+    },
+    {
+      "comment_text": "Great Article",
+      "createdAt": "Tue Aug 24 2021 14:28:07 GMT+0530 (India Standard Time)",
+      "article_id": "30",
+      "username": "Reet",
+      "id": 17
+    },
+    {
+      "comment_text": "greta article",
+      "createdAt": "Tue Aug 24 2021 14:28:36 GMT+0530 (India Standard Time)",
+      "article_id": "30",
+      "username": "Jose",
+      "id": 18
+    },
+    {
+      "comment_text": "Great article!",
+      "createdAt": "Tue Aug 24 2021 15:16:31 GMT+0530 (India Standard Time)",
+      "article_id": "34",
+      "username": "Reet",
+      "id": 19
+    },
+    {
+      "comment_text": "Heloo",
+      "createdAt": "Tue Aug 24 2021 17:00:21 GMT+0530 (India Standard Time)",
+      "article_id": "30",
+      "username": "Jose",
+      "id": 20
+    },
+    {
+      "comment_text": "<h1>Helii<h1>",
+      "createdAt": "Tue Aug 24 2021 17:00:45 GMT+0530 (India Standard Time)",
+      "article_id": "30",
+      "username": "d",
+      "id": 21
+    },
+    {
+      "comment_text": "<h1>Helii<h1><script>alert('Hello');</script>",
+      "createdAt": "Tue Aug 24 2021 17:01:13 GMT+0530 (India Standard Time)",
+      "article_id": "30",
+      "username": "sa",
+      "id": 22
+    },
+    {
+      "comment_text": "<img src=x onerror=alert(1)//>",
+      "createdAt": "Tue Aug 24 2021 17:02:20 GMT+0530 (India Standard Time)",
+      "article_id": "30",
+      "username": "ds",
+      "id": 23
+    },
+    {
+      "comment_text": "s",
+      "createdAt": "Tue Aug 24 2021 17:03:27 GMT+0530 (India Standard Time)",
+      "article_id": "30",
+      "username": "ds",
+      "id": 24
+    },
+    {
+      "comment_text": "sadsd",
+      "createdAt": "Tue Aug 24 2021 17:03:53 GMT+0530 (India Standard Time)",
+      "article_id": "30",
+      "username": "dasd",
+      "id": 25
+    },
+    {
+      "comment_text": "<img src=x onerror=alert(1)//>",
+      "createdAt": "Tue Aug 24 2021 17:04:40 GMT+0530 (India Standard Time)",
+      "article_id": "30",
+      "username": "sd",
+      "id": 26
+    },
+    {
+      "comment_text": "dlflds",
+      "createdAt": "Tue Aug 24 2021 17:05:15 GMT+0530 (India Standard Time)",
+      "article_id": "30",
+      "username": "sdsm",
+      "id": 27
+    },
+    {
+      "comment_text": "df",
+      "createdAt": "Tue Aug 24 2021 17:05:47 GMT+0530 (India Standard Time)",
+      "article_id": "30",
+      "username": "lfs",
+      "id": 28
+    },
+    {
+      "comment_text": "<img src=x onerror=alert(1)//>",
+      "createdAt": "Tue Aug 24 2021 17:06:48 GMT+0530 (India Standard Time)",
+      "article_id": "30",
+      "username": ",fdkd",
+      "id": 29
+    },
+    {
+      "comment_text": "<img src=x onerror=alert(1)//>",
+      "createdAt": "Tue Aug 24 2021 17:07:05 GMT+0530 (India Standard Time)",
+      "article_id": "30",
+      "username": "cf,",
+      "id": 30
+    },
+    {
+      "comment_text": "<img src=x onerror=alert(1)>",
+      "createdAt": "Tue Aug 24 2021 17:07:15 GMT+0530 (India Standard Time)",
+      "article_id": "30",
+      "username": "m",
+      "id": 31
+    },
+    {
+      "comment_text": "<script>alert('Hello');</script>",
+      "createdAt": "Tue Aug 24 2021 17:07:30 GMT+0530 (India Standard Time)",
+      "article_id": "30",
+      "username": "dl",
+      "id": 32
     }
   ],
   "categories": [

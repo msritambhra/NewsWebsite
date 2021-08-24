@@ -3,6 +3,7 @@ import HotNews from '../components/HotNews/HotNews'
 import PriorityNewsList from '../components/PriorityNews/PriorityNewsList';
 import RecentNewsList from '../components/RecentNews/RecentNewsList';
 import styles from './Section.module.css'
+import '../font-awesome-icons/style.css'
 
 const Section = () => {
     const params = useParams();
@@ -18,16 +19,13 @@ const Section = () => {
                     </div> 
                     <div className={styles['list-container']}>
                         <RecentNewsList section={params.section_name}></RecentNewsList>
-{/*                         
-                        <div className={styles.recent}>Recent2</div>
-                        <div className={styles.recent}>Recent3</div> */}
                     </div>
                 </div>
             </main>
             <aside className={`${styles.sidebar} ${styles.col}`}>
                     <div className={styles['heading-container']}>
                     <div className={styles.blink}>
-                        <i className="fas fa-circle"></i>
+                        <i className="fas fa-circle icon-circle"></i>
                     </div>
                     Top News
                     </div> 

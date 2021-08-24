@@ -6,13 +6,11 @@
 
 .social-share-container i{
     font-size: 1.7rem;
-    /* color: #BB1919; */
 }
 
 .social-share-container a{
     margin: 0 0.3rem;
     transition: 500ms;
-    
 }
 
 .social-share-container a:hover{
@@ -34,11 +32,3 @@
 .whatsapp{
     color: #25d366;
 }
-
-/* .copy{
-    position: relative;
-}
-
-.tooltip{
-    visibility: hidden;
-} */

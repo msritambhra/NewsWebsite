@@ -1,13 +1,11 @@
 import { useRef } from "react";
 import useInput from '../../hooks/use-input';
 import styles from './CommentForm.module.css'
+import DOMPurify from "dompurify";
 
 const isNotEmpty = (value) => value.trim() !== '';
 
 const CommentForm = (props) =>{
-    const commentTextRef = useRef();
-    const commentUsername = useRef();
-
     const {
       value: nameValue,
       isValid: nameIsValid,
@@ -38,13 +36,12 @@ const CommentForm = (props) =>{
           return;
         }
 
+        
         const newComment = {
-            "comment_text": commentTextValue,
-            // commentTextRef.current.value,
+            "comment_text": DOMPurify.sanitize(commentTextValue),
             "createdAt": Date().toLocaleString(),
             "article_id": props.article_id,
             "username": nameValue
-            // commentUsername.current.value
         }
         
         props.addComment(newComment);
@@ -58,14 +55,14 @@ const CommentForm = (props) =>{
     const nameClasses = nameHasError ? `${styles['form-control']} ${styles['invalid']}` : `${styles['form-control']}`
     const commentTextClasses = commentTextHasError ? `${styles['form-control']} ${styles['invalid']}` : `${styles['form-control']}`
 
+    
     return (
         <form className={styles["comment-form"]} onSubmit={submitHandler}>
           <div className={styles['comment-fields']}>
             <div className={nameClasses}>
               <input 
                 placeholder="Name" 
-                required 
-                // ref={commentUsername}
+                required
                 value={nameValue}
                 onChange={nameChangeHandler}
                 onBlur={nameBlurHandler}
@@ -77,8 +74,7 @@ const CommentForm = (props) =>{
               <textarea 
                 placeholder="Comment" 
                 rows="4" 
-                required 
-                // ref={commentTextRef}
+                required
                 value={commentTextValue}
                 onChange={commentTextChangeHandler}
                 onBlur={commentTextBlurHandler}
