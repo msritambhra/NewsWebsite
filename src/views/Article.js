@@ -14,9 +14,7 @@ const Article = () =>{
     const [article, setArticle] = useState('');
     const [error, setError] = useState(false);
     const [isLoading, setIsLoading] = useState(null);
-   
-    const content = '';
-    
+
     const fetchArticleHandler = useCallback(async()=>{
         setIsLoading(true);
         setError(false);
@@ -34,14 +32,26 @@ const Article = () =>{
             
         }catch(error){
             setError(error.message);
-            console.log(error.message);
         }
 
         setIsLoading(false);
         
     }, [params.article_id]);
+    
+    const articleDateComponents = new Date(article.createdAt).toDateString().split(' ');
+    let DateString = articleDateComponents[0] + ', ' + articleDateComponents[1] + ' ' 
+            + articleDateComponents[2] + ', ' + articleDateComponents[3];
 
     useEffect(()=>{
+       
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = "https://platform.twitter.com/widgets.js";
+        script.async = true;
+
+        document.body.appendChild(script);
+    
+        
         fetchArticleHandler();
     }, [fetchArticleHandler]);
 
@@ -50,6 +60,10 @@ const Article = () =>{
             <LoadingSpinner></LoadingSpinner>
         </div>
     }
+    
+    if(error){
+        return <p>{error}</p>
+    }
     return (<div className={styles['main-sidebar']}>
         <main className={`${styles.main} ${styles.col}`}>
             <section className={styles.article}>
@@ -57,8 +71,7 @@ const Article = () =>{
                     <div className={styles.article__category}>{article.categoryName}</div>
                     <h1 className={styles.aticle__title}><span>{article.title}</span></h1>
                     <div className={styles.sub_header}>
-                        <div className={styles.article__date}>{article.createdAt}</div>
-                        {/* Add -Share on social Media -Star*/}
+                        <div className={styles.article__date}>{DateString}</div>
                         <div className={styles.social_share}>
                             <SocialShare title={article.title} url={window.location.href} image={article.imageUrl}></SocialShare>
                         </div>

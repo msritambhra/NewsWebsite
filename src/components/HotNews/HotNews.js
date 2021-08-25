@@ -14,15 +14,6 @@ const HotNews = (props) =>{
         setError(null);
         try{
             let response;
-            // Case: Home Page
-            // if(props.section===undefined){
-            //     response = await axios.get('http://localhost:3001/article-summaries?priority=1&_sort=publishedAt&_limit=1')
-            // }
-            // // Case: Section Page 
-            // else{
-            //     response = await axios.get(`http://localhost:3001/article-summaries?category_name=${props.section}&priority=1&_sort=publishedAt&_limit=1`)
-            // }
-
             if (props.section===undefined){
                 response = await axios.get('http://localhost:3002/api/pList/44/allArticles?limit=1');
             }
@@ -44,14 +35,13 @@ const HotNews = (props) =>{
             else{
                 throw new Error('Section not defined!')
             }
-            // No data in response
             if(response.data.length<1){
                 throw new Error('No Data Found!')
             }
             setArticle(response.data[0]);
         }catch(error){
+            setIsLoading(false);
             setError(error.message);
-            console.log(error.message);
         }
         setIsLoading(false);
     }, [props.section]);
@@ -66,14 +56,19 @@ const HotNews = (props) =>{
         </div>
     }
     
-    return ( <Link to={{pathname: `/article/${article.articleId}/${article.title}`}}><div className={styles.container}>
-                   
+    if (error){
+        return <p>{error}</p>
+    }
+
+    return ( 
+    <Link to={{pathname: `/article/${article.articleId}/${article.title}`}}>
+        <div className={styles.container}>
                     <img src={article.imageUrl} alt={article.title}/>                
                     <h2 className={styles["card-title"]}>{article.title}</h2>
                     <p className={styles["card-desc"]}>{article.description}</p>
-  
-    </div></Link>)
-    // styles={{ backgroundImage:`url(${article.image})`,heihgt: "100%",width:"100%" }}
+        </div>
+    </Link>
+    )
 }
 
 export default HotNews;

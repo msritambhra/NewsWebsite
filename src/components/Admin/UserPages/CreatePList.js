@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import useInput from '../../../hooks/use-input';
 import axios from 'axios';
 import styles from './CreateArticle.module.css'
@@ -67,7 +67,7 @@ const CreatePList = () =>{
         
         
     }
-    console.log(nameValue);
+
     return <div className={styles.container}>
         <div className={styles.header}>
             <h1>Create Priority List</h1>
@@ -78,7 +78,7 @@ const CreatePList = () =>{
                 <input 
                     name="name"
                     id="name" 
-                    placeholder="Name"
+                    placeholder="Name*"
                     required 
                     value={nameValue}
                     onChange={nameChangeHandler}
@@ -91,7 +91,7 @@ const CreatePList = () =>{
                 <textarea 
                     name="description"
                     id="description" 
-                    placeholder="Description (upto 255 words)" 
+                    placeholder="Description (upto 255 words)*" 
                     rows="2"
                     required 
                     value={descriptionValue}

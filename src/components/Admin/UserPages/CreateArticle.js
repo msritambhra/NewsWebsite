@@ -150,7 +150,7 @@ const CreateArticle = () =>{
                 <input 
                     name="title"
                     id="title" 
-                    placeholder="Title"
+                    placeholder="Title*"
                     required 
                     value={titleValue}
                     onChange={titleChangeHandler}
@@ -162,7 +162,7 @@ const CreateArticle = () =>{
                 <textarea 
                     name="summary"
                     id="summary" 
-                    placeholder="Summary (max 50 words)" 
+                    placeholder="Summary (max 50 words)*" 
                     rows="2"
                     required 
                     value={summaryValue}
@@ -175,7 +175,6 @@ const CreateArticle = () =>{
                 <select name="category_id" id="category_id" 
                     defaultValue={categoryValue}
                     onChange = {categoryChangeHandler}
-                    onChange={categoryChangeHandler}
                     onBlur={categoryBlurHandler}
                 >
                     <option value="">Select category...</option>
@@ -190,7 +189,6 @@ const CreateArticle = () =>{
                 <select name="author_id" id="author_id" 
                     defaultValue={authorValue}
                     onChange = {authorChangeHandler}
-                    onChange={authorChangeHandler}
                     onBlur={authorBlurHandler}
                 >
                     <option value="">Select author...</option>
@@ -199,14 +197,14 @@ const CreateArticle = () =>{
                                 }
                     )}
                 </select>
-                {categoryHasError && <p className={styles["error-text"]}>Please select a valid cateogry.</p>}
+                {authorHasError && <p className={styles["error-text"]}>Please select a valid author.</p>}
             </div>
             <div className={styles['form-control']}>
                 <input 
                     id="image"
                     name="image"
                     type="url"
-                    placeholder="Image URL"
+                    placeholder="Image URL*"
                     required 
                     value={imageValue}
                     onChange={imageChangeHandler}
@@ -218,7 +216,7 @@ const CreateArticle = () =>{
                 <textarea 
                     name="content"
                     id="content" 
-                    placeholder="Content (HTML Markup format)" 
+                    placeholder="Content (HTML Markup format)*" 
                     rows="20"
                     required
                     value={contentValue}

@@ -17,11 +17,7 @@ const CommentBox = () =>{
 
     const fetchComments = useCallback(async()=>{
         setError(false);
-        let response;
         try{
-
-            // response = await axios.get(`http://localhost:3001/comments?article_id=${params.article_id}`);
-            // await setComments(()=>response.data);
             axios.get(`http://localhost:3001/comments?article_id=${params.article_id}`).then((response)=>{
                 setComments(()=>response.data);
             }).catch((err)=>{
@@ -31,7 +27,6 @@ const CommentBox = () =>{
 
         }catch(error){
             setError(error.message);
-            console.log(error.message);
         }
         
     }, [params.article_id]);
@@ -58,7 +53,7 @@ const CommentBox = () =>{
         axios.post('http://localhost:3001/comments', newComment).then((response)=>{
             fetchComments();
         }).catch((error)=>{
-            console.log(error.message);
+            setError(error.message);
         });
     }
 
@@ -76,8 +71,10 @@ const CommentBox = () =>{
         }
     }
 
+    
     return <div className={styles["comment-box"]}>
         <h2>Join the Discussion!</h2>
+        {error && <p>{error.message}</p>}
         <CommentForm addComment={addComment} article_id={params.article_id}/>
         <button className={styles["comment-view-button"]} onClick={isVisibleHandler}>{buttonText}</button>
         <h3>Comments</h3>

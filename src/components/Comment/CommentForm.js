@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import useInput from '../../hooks/use-input';
 import styles from './CommentForm.module.css'
 import DOMPurify from "dompurify";

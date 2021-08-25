@@ -1,6 +1,6 @@
 import styles from './App.module.css'
 
-import { Route, Redirect, Switch } from 'react-router-dom';
+import { Route, Redirect, Switch, BrowserRouter } from 'react-router-dom';
 import { useContext } from 'react';
 
 import NavBar from './components/NavBar/NavBar';
@@ -9,6 +9,7 @@ import Article from './views/Article';
 import NotFound from './views/NotFound';
 import LogoHeader from './components/NavBar/LogoHeader';
 import AdminNav from './components/Admin/Layout/AdminNav';
+import Footer from './components/Footer/Footer';
 import AuthForm from './components/Admin/Auth/AuthForm';
 import AuthContext from './store/auth-context';
 import AdminHome from './components/Admin/UserPages/AdminHome';
@@ -21,6 +22,7 @@ const App = () => {
     const authCtx = useContext(AuthContext);
     
     return(<div>
+    <BrowserRouter>
           <Switch>
             <Route exact path="/">
               <header className={styles.header}>
@@ -36,7 +38,6 @@ const App = () => {
               </header>
               <div className={styles.content}>
                 <Section></Section>
-                {/* <Home></Home> */}
               </div>
             </Route>
             <Route exact path="/section/:section_name">
@@ -128,6 +129,9 @@ const App = () => {
               </div>
             </Route>
           </Switch>
+          <Footer/>
+          </BrowserRouter>
+         
     </div>
     );
 }

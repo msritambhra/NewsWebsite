@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import useInput from '../../../hooks/use-input';
 import axios from 'axios';
 import styles from './CreateArticle.module.css'
@@ -56,7 +56,7 @@ const DeleteArticlePriority = () =>{
     const articleRef = useRef();
 
     const getFilteredArticles = () => {
-        if (pListValue!=''){
+        if (pListValue!==''){
             axios.get(`http://localhost:3002/api/pList/${pListValue}/allArticles?limit=-1`)
             .then(response => {
                 setArticles(()=>(sortByKey(response.data,'title')));

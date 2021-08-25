@@ -8,37 +8,32 @@ const PriorityNewsList = (props) =>{
 
     const [articles, setArticles] = useState([]);
     const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(null);
+    // const [isLoading, setIsLoading] = useState(null);
 
     
     const fetchArticlesHandler = useCallback(async()=>{
-        setIsLoading(true);
+        // setIsLoading(true);
         setError(null);
         try{
             let response;
-            // if(props.section===undefined){
-            //     response = await axios.get('http://localhost:3001/article-summaries?priority=1&_sort=publishedAt&_limit=10');
-            // }
-            // else{
-            //     response = await axios.get(`http://localhost:3001/article-summaries?category_name=${props.section}&priority=1&_sort=publishedAt&_limit=10`);
-            // }
 
             if (props.section===undefined){
                 response = await axios.get('http://localhost:3002/api/pList/38/allArticles?limit=-1');
             }
-            else if(props.section=="world"){
+            else if(props.section==="world"){
                 response = await axios.get('http://localhost:3002/api/pList/39/allArticles?limit=-1')
+                //30
             }
-            else if(props.section=="politics"){
+            else if(props.section==="politics"){
                 response = await axios.get('http://localhost:3002/api/pList/40/allArticles?limit=-1')
             }
-            else if(props.section=="technology"){
+            else if(props.section==="technology"){
                 response = await axios.get('http://localhost:3002/api/pList/41/allArticles?limit=-1')
             }
-            else if(props.section=="business"){
+            else if(props.section==="business"){
                 response = await axios.get('http://localhost:3002/api/pList/42/allArticles?limit=-1')
             }
-            else if(props.section=="health"){
+            else if(props.section==="health"){
                 response = await axios.get('http://localhost:3002/api/pList/43/allArticles?limit=-1')
             }
             else{
@@ -48,15 +43,12 @@ const PriorityNewsList = (props) =>{
             if(response.data.length<1){
                 throw new Error('No Data Found!')
             }
-
-            // response.data.splice(0,1);
             await setArticles(()=>response.data);
         }catch(error){
             setError(error.message);
-            console.log(error.message);
         }
 
-        setIsLoading(false);
+        // setIsLoading(false);
         
     }, [props.section]);
 
