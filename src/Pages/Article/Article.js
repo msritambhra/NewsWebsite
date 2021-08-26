@@ -6,7 +6,7 @@ import PriorityNewsList from '../../components/PriorityNews/PriorityNewsList/Pri
 import SocialShare from '../../components/SocialShare/SocialShare'
 import LoadingSpinner from '../../components/UI/LoadingSpinner'
 import styles from './Article.module.css'
-
+import DOMPurify from "dompurify";
 
 const Article = () =>{
     const params = useParams();
@@ -79,7 +79,7 @@ const Article = () =>{
                     <div className={styles.article__image}>
                         <img src={article.imageUrl} alt={article.title}></img>
                     </div>
-                    <div className={styles.article__content} dangerouslySetInnerHTML={{ __html: article.content }}></div>
+                    <div className={styles.article__content} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.content) }}></div>
                 </article>
             </section>
             <section className={styles['comment-container']}>

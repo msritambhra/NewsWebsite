@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import ApiAuthContext from '../../../store/api-auth-context';
 import useInput from '../../../hooks/use-input';
 import styles from './CreateArticle.module.css'
 
 const isNotEmpty = (value) => value.trim() !== '';
-
+const is255Words = (value) => ((value.trim() !== '') && (value.trim().length <= 255));
+const isValidArticleContent = (value) =>((value.trim() !== '') && (value.trim().length <= 4294900000));
 const sortByKey= (array, key) => {
     return array.sort(function(a, b) {
         var x = a[key]; var y = b[key];
@@ -19,10 +21,17 @@ const CreateArticle = () =>{
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
 
+    const apiCtx = useContext(ApiAuthContext);
+    let token = `Bearer ${apiCtx.apiToken}`;
+
     useEffect(()=>{
     
         setError(false);
-        axios.get('http://localhost:3002/api/category/allCategory')
+        axios.get('http://localhost:3002/api/category/allCategory',{
+            headers: { 
+                Authorization: token
+            }
+        })
         .then(response => {
             setCategoryList(()=>(sortByKey(response.data,'categoryName')));
         })
@@ -30,7 +39,11 @@ const CreateArticle = () =>{
             setError(error.message);
         })
 
-        axios.get('http://localhost:3002/api/author/allAuthors')
+        axios.get('http://localhost:3002/api/author/allAuthors',{
+            headers: { 
+                Authorization: token
+            }
+        })
         .then(response => {
             setAuthorList(()=>(sortByKey(response.data,'authorName')));
         })
@@ -47,7 +60,7 @@ const CreateArticle = () =>{
         valueChangeHandler: titleChangeHandler,
         inputBlurHandler: titleBlurHandler,
         reset: resetTitle,
-    } = useInput(isNotEmpty);
+    } = useInput(is255Words);
 
     const {
         value: summaryValue,
@@ -56,7 +69,7 @@ const CreateArticle = () =>{
         valueChangeHandler: summaryChangeHandler,
         inputBlurHandler: summaryBlurHandler,
         reset: resetSummary,
-    } = useInput(isNotEmpty);
+    } = useInput(is255Words);
 
     const {
         value: categoryValue,
@@ -92,7 +105,7 @@ const CreateArticle = () =>{
         valueChangeHandler: contentChangeHandler,
         inputBlurHandler: contentBlurHandler,
         reset: resetContent,
-    } = useInput(isNotEmpty);
+    } = useInput(isValidArticleContent);
 
     let formIsValid = false;
     if (contentIsValid && imageIsValid && summaryIsValid && titleIsValid && categoryIsValid && authorIsValid) {
@@ -102,7 +115,11 @@ const CreateArticle = () =>{
     const [isLoading, setIsLoading] = useState(false);
 
     const addArticle = (newArticle) =>{
-        axios.post('http://localhost:3002/api/article/createArticle', newArticle).then((response)=>{
+        axios.post('http://localhost:3002/api/article/createArticle', newArticle,{
+            headers: { 
+                Authorization: token
+            }
+        }).then((response)=>{
             setIsLoading(false);
             // alert('Article Added!')
             setSuccess(true);
@@ -167,20 +184,20 @@ const CreateArticle = () =>{
                     onChange={titleChangeHandler}
                     onBlur={titleBlurHandler}
                 />
-                {titleHasError && <p className={styles["error-text"]}>Please enter a valid title.</p>}
+                {titleHasError && <p className={styles["error-text"]}>Please enter a valid title (upto 255 characters).</p>}
             </div>
             <div className={styles['form-control']}>
                 <textarea 
                     name="summary"
                     id="summary" 
-                    placeholder="Summary (max 50 words)*" 
+                    placeholder="Summary (upto 255 words)*" 
                     rows="2"
                     required 
                     value={summaryValue}
                     onChange={summaryChangeHandler}
                     onBlur={summaryBlurHandler}
                 />
-                {summaryHasError && <p className={styles["error-text"]}>Please enter a valid summary.</p>}
+                {summaryHasError && <p className={styles["error-text"]}>Please enter a valid summary (upto 255 characters).</p>}
             </div>
             <div className={styles['form-control']}>
                 <select name="category_id" id="category_id" 
@@ -234,7 +251,7 @@ const CreateArticle = () =>{
                     onChange={contentChangeHandler}
                     onBlur={contentBlurHandler}
                 />
-                {contentHasError && <p className={styles["error-text"]}>Please enter valid content.</p>}
+                {contentHasError && <p className={styles["error-text"]}>Please enter valid content (upto 4294900000 characters).</p>}
             </div>
             <div>
                 <button className={styles['reset-button']} onClick={resetHandler} type="reset">Reset</button>

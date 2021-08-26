@@ -11,9 +11,10 @@ const HotNews = (props) =>{
     const [isLoading, setIsLoading] = useState(null);
 
     const apiCtx = useContext(ApiAuthContext);
-    let token = apiCtx.apiToken;
+    let token = `Bearer ${apiCtx.apiToken}`;
     
     const fetchArticleHandler = useCallback(async ()=>{
+        
         setIsLoading(true);
         setError(null);
         try{
@@ -21,42 +22,42 @@ const HotNews = (props) =>{
             if (props.section===undefined){
                 response = await axios.get('http://localhost:3002/api/pList/28/allArticles?limit=1',{
                     headers: { 
-                        Authorization: `Bearer ${token}`
+                        Authorization: token
                     }
                 });
             }
             else if(props.section==="world"){
                 response = await axios.get('http://localhost:3002/api/pList/29/allArticles?limit=1',{
                     headers: { 
-                        Authorization: `Bearer ${token}`
+                        Authorization: token
                     }
                 })
             }
             else if(props.section==="politics"){
                 response = await axios.get('http://localhost:3002/api/pList/30/allArticles?limit=1',{
                     headers: { 
-                        Authorization: `Bearer ${token}`
+                        Authorization: token
                     }
                 })
             }
             else if(props.section==="technology"){
                 response = await axios.get('http://localhost:3002/api/pList/32/allArticles?limit=1',{
                     headers: { 
-                        Authorization: `Bearer ${token}`
+                        Authorization: token
                     }
                 })
             }
             else if(props.section==="business"){
                 response = await axios.get('http://localhost:3002/api/pList/31/allArticles?limit=1',{
                     headers: { 
-                        Authorization: `Bearer ${token}`
+                        Authorization: token
                     }
                 })
             }
             else if(props.section==="health"){
                 response = await axios.get('http://localhost:3002/api/pList/33/allArticles?limit=1',{
                     headers: { 
-                        Authorization: `Bearer ${token}`
+                        Authorization: token
                     }
                 })
             }

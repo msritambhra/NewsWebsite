@@ -1,7 +1,8 @@
-import {useState, useEffect, useCallback} from 'react'
+import {useState, useEffect, useCallback, useContext} from 'react'
 import axios from 'axios'
 import styles from './PriorityNewsList.module.css'
 import PriorityListItem from '../PriorityListItem/PriorityListItem'
+import ApiAuthContext from '../../../store/api-auth-context'
 
 
 const PriorityNewsList = (props) =>{
@@ -10,6 +11,9 @@ const PriorityNewsList = (props) =>{
     const [error, setError] = useState(null);
     // const [isLoading, setIsLoading] = useState(null);
 
+    const apiCtx = useContext(ApiAuthContext);
+    let token = `Bearer ${apiCtx.apiToken}`;
+    
     
     const fetchArticlesHandler = useCallback(async()=>{
         // setIsLoading(true);
@@ -18,23 +22,47 @@ const PriorityNewsList = (props) =>{
             let response;
 
             if (props.section===undefined){
-                response = await axios.get('http://localhost:3002/api/pList/34/allArticles?limit=-1');
+                response = await axios.get('http://localhost:3002/api/pList/34/allArticles?limit=-1',{
+                    headers: { 
+                        Authorization: token
+                    }
+                });
             }
             else if(props.section==="world"){
-                response = await axios.get('http://localhost:3002/api/pList/35/allArticles?limit=-1')
+                response = await axios.get('http://localhost:3002/api/pList/35/allArticles?limit=-1',{
+                    headers: { 
+                        Authorization: token
+                    }
+                })
                 //30
             }
             else if(props.section==="politics"){
-                response = await axios.get('http://localhost:3002/api/pList/36/allArticles?limit=-1')
+                response = await axios.get('http://localhost:3002/api/pList/36/allArticles?limit=-1',{
+                    headers: { 
+                        Authorization: token
+                    }
+                })
             }
             else if(props.section==="technology"){
-                response = await axios.get('http://localhost:3002/api/pList/37/allArticles?limit=-1')
+                response = await axios.get('http://localhost:3002/api/pList/37/allArticles?limit=-1',{
+                    headers: { 
+                        Authorization: token
+                    }
+                })
             }
             else if(props.section==="business"){
-                response = await axios.get('http://localhost:3002/api/pList/38/allArticles?limit=-1')
+                response = await axios.get('http://localhost:3002/api/pList/38/allArticles?limit=-1',{
+                    headers: { 
+                        Authorization: token
+                    }
+                })
             }
             else if(props.section==="health"){
-                response = await axios.get('http://localhost:3002/api/pList/39/allArticles?limit=-1')
+                response = await axios.get('http://localhost:3002/api/pList/39/allArticles?limit=-1',{
+                    headers: { 
+                        Authorization: token
+                    }
+                })
             }
             else{
                 throw new Error('Section not defined!')

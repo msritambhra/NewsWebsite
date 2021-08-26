@@ -1,6 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext} from 'react';
 import axios from 'axios';
 import useInput from '../../../hooks/use-input';
+import ApiAuthContext from '../../../store/api-auth-context';
 import styles from '../CreateArticle/CreateArticle.module.css'
 
 const isNotEmpty = (value) => value.trim() !== '';
@@ -19,10 +20,17 @@ const DeleteArticlePriority = () =>{
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
     
+    const apiCtx = useContext(ApiAuthContext);
+    let token = `Bearer ${apiCtx.apiToken}`;
+    
     useEffect(()=>{
     
         setError(false);
-        axios.get('http://localhost:3002/api/pList/allPList')
+        axios.get('http://localhost:3002/api/pList/allPList',{
+            headers: { 
+                Authorization: token
+            }
+        })
         .then(response => {
             setPLists(()=>(sortByKey(response.data,'name')));
         })
@@ -58,7 +66,11 @@ const DeleteArticlePriority = () =>{
 
     const getFilteredArticles = () => {
         if (pListValue!==''){
-            axios.get(`http://localhost:3002/api/pList/${pListValue}/allArticles?limit=-1`)
+            axios.get(`http://localhost:3002/api/pList/${pListValue}/allArticles?limit=-1`,{
+                headers: { 
+                    Authorization: token
+                }
+            })
             .then(response => {
                 setArticles(()=>(sortByKey(response.data,'title')));
             })
@@ -87,7 +99,11 @@ const DeleteArticlePriority = () =>{
 
     const deleteArticleFromPList = (articleValue, pListValue) =>{
 
-        axios.delete(`http://localhost:3002/api/pList/delete/${pListValue+"_"+articleValue}`)
+        axios.delete(`http://localhost:3002/api/pList/delete/${pListValue+"_"+articleValue}`,{
+            headers: { 
+                Authorization: token
+            }
+        })
         .then(()=>{
             setIsLoading(false);
             setSuccess(true);

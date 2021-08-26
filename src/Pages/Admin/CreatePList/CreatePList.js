@@ -1,16 +1,20 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import axios from 'axios';
+import ApiAuthContext from '../../../store/api-auth-context';
 import useInput from '../../../hooks/use-input';
 import styles from '../CreateArticle/CreateArticle.module.css'
 
-const isNotEmpty = (value) => value.trim() !== '';
+// const isNotEmpty = (value) => value.trim() !== '';
 // const isSingleWord = (value) => (value.trim() !== '') && (value.trim().split(' ').length <= 1);
-const is255Words = (value) => (value.trim() !== '') && (value.trim().split(' ').length <= 255);
+const is255Words = (value) => ((value.trim() !== '') && (value.trim().length <= 255));
 
 const CreatePList = () =>{
     
     const [isLoading, setIsLoading] = useState(false);
     const [success, setSuccess] = useState(false);
+
+    const apiCtx = useContext(ApiAuthContext);
+    let token = `Bearer ${apiCtx.apiToken}`;
 
     const {
         value: nameValue,
@@ -19,7 +23,7 @@ const CreatePList = () =>{
         valueChangeHandler: nameChangeHandler,
         inputBlurHandler: nameBlurHandler,
         reset: resetName,
-    } = useInput(isNotEmpty);
+    } = useInput(is255Words);
 
     const {
         value: descriptionValue,
@@ -45,7 +49,11 @@ const CreatePList = () =>{
         axios.post('http://localhost:3002/api/pList/createPList', {
             'name': nameValue.trim().toLowerCase(),
             'description': descriptionValue
-        } ).then((response)=>{
+        } ,{
+            headers: { 
+                Authorization: token
+            }
+        }).then((response)=>{
             setIsLoading(false);
             setSuccess(true);
             resetHandler();
@@ -74,7 +82,7 @@ const CreatePList = () =>{
         <div className={styles.header}>
             <h1>Create Priority List</h1>
         </div> 
-        {success && <p className={styles['success-text']}>Article Added!</p>}
+        {success && <p className={styles['success-text']}>Priority List Created!</p>}
         <form onInput={()=>setSuccess(false)} onSubmit={submitHandler} className={styles.form}>
             
             <div className={styles['form-control']}>
@@ -87,7 +95,7 @@ const CreatePList = () =>{
                     onChange={nameChangeHandler}
                     onBlur={nameBlurHandler}
                 />
-                {nameHasError && <p className={styles["error-text"]}>Please enter a valid name.</p>}
+                {nameHasError && <p className={styles["error-text"]}>Please enter a valid name. It should be under 255 characters.</p>}
             </div>
 
             <div className={styles['form-control']}>
@@ -101,7 +109,7 @@ const CreatePList = () =>{
                     onChange={descriptionChangeHandler}
                     onBlur={descriptionBlurHandler}
                 />
-                {descriptionHasError && <p className={styles["error-text"]}>Please enter a valid description.</p>}
+                {descriptionHasError && <p className={styles["error-text"]}>Please enter a valid description. It should be under 255 characters.</p>}
             </div>
    
             <div>
