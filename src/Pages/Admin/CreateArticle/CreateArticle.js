@@ -108,7 +108,15 @@ const CreateArticle = () =>{
             setSuccess(true);
             resetHandler();
         }).catch((error)=>{
-            alert(error.message);
+            if(error.response){
+                if(error.response.data.message){
+                    alert(error.response.data.message);
+                }
+            }
+            else{
+                alert(error);
+            }
+            
             setIsLoading(false);
         });
     }
