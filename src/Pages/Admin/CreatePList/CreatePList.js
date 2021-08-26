@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import useInput from '../../../hooks/use-input';
 import axios from 'axios';
-import styles from './CreateArticle.module.css'
+import useInput from '../../../hooks/use-input';
+import styles from '../CreateArticle/CreateArticle.module.css'
 
 const isNotEmpty = (value) => value.trim() !== '';
 // const isSingleWord = (value) => (value.trim() !== '') && (value.trim().split(' ').length <= 1);

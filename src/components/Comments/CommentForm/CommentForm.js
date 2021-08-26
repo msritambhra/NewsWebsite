@@ -1,4 +1,4 @@
-import useInput from '../../hooks/use-input';
+import useInput from '../../../hooks/use-input';
 import styles from './CommentForm.module.css'
 import DOMPurify from "dompurify";
 

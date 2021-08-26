@@ -1,9 +1,8 @@
-import { addComment } from "@babel/types";
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import CommentForm from './CommentForm'
-import Comment from './Comment'
+import CommentForm from "../CommentForm/CommentForm";
+import Comment from "../Comment/Comment";
 import styles from './CommentBox.module.css'
 
 const CommentBox = () =>{

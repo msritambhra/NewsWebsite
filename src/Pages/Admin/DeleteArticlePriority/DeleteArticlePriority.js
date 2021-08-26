@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import useInput from '../../../hooks/use-input';
 import axios from 'axios';
-import styles from './CreateArticle.module.css'
+import useInput from '../../../hooks/use-input';
+import styles from '../CreateArticle/CreateArticle.module.css'
 
 const isNotEmpty = (value) => value.trim() !== '';
 
@@ -12,7 +12,7 @@ const sortByKey= (array, key) => {
     });
 }
 
-const AddArticlePriority = () =>{
+const DeleteArticlePriority = () =>{
     const [pLists, setPLists] = useState([]);
     const [articles, setArticles] = useState([]);
 
@@ -29,16 +29,6 @@ const AddArticlePriority = () =>{
             setPLists([]);
             setError(error.message);
         });
-
-        axios.get('http://localhost:3002/api/article/allArticles?limit=-1')
-        .then(response => {
-            setArticles(()=>(sortByKey(response.data,'title')));
-        })
-        .catch(error => {
-            setArticles([]);
-            setError(error.message);
-        });
-        
         
     }, []);
     
@@ -65,6 +55,22 @@ const AddArticlePriority = () =>{
     const pListRef = useRef();
     const articleRef = useRef();
 
+    const getFilteredArticles = () => {
+        if (pListValue!==''){
+            axios.get(`http://localhost:3002/api/pList/${pListValue}/allArticles?limit=-1`)
+            .then(response => {
+                setArticles(()=>(sortByKey(response.data,'title')));
+            })
+            .catch(error => {
+                setArticles([]);
+                setError(error.message);
+            });
+        }
+        else{
+            setArticles([]);
+        }
+    }
+
     let formIsValid = false;
     if (pListIsValid && articleIsValid && !error) {
       formIsValid = true;
@@ -78,18 +84,16 @@ const AddArticlePriority = () =>{
         setError(false);
     }
 
-    const addArticleToPList = (articleValue, pListValue) =>{
-        axios.post('http://localhost:3002/api/pList/addArticles', {
-            'priorityListId': pListValue,
-            'articleId': articleValue
-        } ).then((response)=>{
+    const deleteArticleFromPList = (articleValue, pListValue) =>{
+
+        axios.delete(`http://localhost:3002/api/pList/delete/${pListValue+"_"+articleValue}`)
+        .then(()=>{
             setIsLoading(false);
             resetHandler();
         }).catch((error)=>{
             setIsLoading(false);
             setError(error.message);
         });
-
     }
 
     const submitHandler = (event) =>{
@@ -101,22 +105,22 @@ const AddArticlePriority = () =>{
 
         setIsLoading(true);
         
-        addArticleToPList(articleValue, pListValue);
-        
+        deleteArticleFromPList(articleValue, pListValue); 
         
     }
 
     return <div className={styles.container}>
         <div className={styles.header}>
-            <h1>Add Article to Priority List</h1>
+            <h1>Delete Article From Priority List</h1>
         </div> 
         <form onSubmit={submitHandler} className={styles.form}>
-            
+           
             <div className={styles['form-control']}>
                 <select name="pList" id="pList" 
                     defaultValue={pListValue}
-                    ref = {pListRef}
-                    onChange={pListChangeHandler}
+                    ref={pListRef}
+                    onChange={getFilteredArticles}
+                    onInput={pListChangeHandler}
                     onBlur={pListBlurHandler}
                 >
                     <option value="">Select Priority list...</option>
@@ -132,7 +136,7 @@ const AddArticlePriority = () =>{
                 <select name="article" id="article" 
                     defaultValue={articleValue}
                     ref={articleRef}
-                    onChange = {articleChangeHandler}
+                    onChange={articleChangeHandler}
                     onBlur={articleBlurHandler}
                 >
                     <option value="">Select Article to add...</option>
@@ -148,13 +152,16 @@ const AddArticlePriority = () =>{
             <div>
                 <button className={styles['reset-button']} onClick={resetHandler} type="reset">Reset</button>
                 {!isLoading &&
-                    (<button  disabled={!formIsValid} className={styles['submit-button']} type="submit">Add</button>)
+                    (<button  disabled={!formIsValid} className={styles['submit-button']} type="submit">Delete</button>)
                 }
                 {isLoading &&  <p>Submitting Data...</p>}
             </div>
-            {error && <p className={styles["error-text"]}>Failed to fetch Data. Please try to reload the page.</p>}
+            {error && <div className={styles["error-text"]}>
+                <p>Request to Server Failed. Please try to reload the page.</p>
+                <p>Error Mesaage: {error}</p>
+            </div>}
         </form>
     </div>
     }
 
-export default AddArticlePriority;
+export default DeleteArticlePriority;

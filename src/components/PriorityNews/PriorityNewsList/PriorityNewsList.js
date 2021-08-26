@@ -1,7 +1,7 @@
 import {useState, useEffect, useCallback} from 'react'
 import axios from 'axios'
 import styles from './PriorityNewsList.module.css'
-import PriorityListItem from './PriorityListItem';
+import PriorityListItem from '../PriorityListItem/PriorityListItem'
 
 
 const PriorityNewsList = (props) =>{
@@ -18,23 +18,23 @@ const PriorityNewsList = (props) =>{
             let response;
 
             if (props.section===undefined){
-                response = await axios.get('http://localhost:3002/api/pList/38/allArticles?limit=-1');
+                response = await axios.get('http://localhost:3002/api/pList/34/allArticles?limit=-1');
             }
             else if(props.section==="world"){
-                response = await axios.get('http://localhost:3002/api/pList/39/allArticles?limit=-1')
+                response = await axios.get('http://localhost:3002/api/pList/35/allArticles?limit=-1')
                 //30
             }
             else if(props.section==="politics"){
-                response = await axios.get('http://localhost:3002/api/pList/40/allArticles?limit=-1')
+                response = await axios.get('http://localhost:3002/api/pList/36/allArticles?limit=-1')
             }
             else if(props.section==="technology"){
-                response = await axios.get('http://localhost:3002/api/pList/41/allArticles?limit=-1')
+                response = await axios.get('http://localhost:3002/api/pList/37/allArticles?limit=-1')
             }
             else if(props.section==="business"){
-                response = await axios.get('http://localhost:3002/api/pList/42/allArticles?limit=-1')
+                response = await axios.get('http://localhost:3002/api/pList/38/allArticles?limit=-1')
             }
             else if(props.section==="health"){
-                response = await axios.get('http://localhost:3002/api/pList/43/allArticles?limit=-1')
+                response = await axios.get('http://localhost:3002/api/pList/39/allArticles?limit=-1')
             }
             else{
                 throw new Error('Section not defined!')

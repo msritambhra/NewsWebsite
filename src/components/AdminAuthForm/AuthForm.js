@@ -1,7 +1,7 @@
 import { useState, useRef, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import useInput from '../../../hooks/use-input';
-import AuthContext from '../../../store/auth-context';
+import useInput from '../../hooks/use-input';
+import AuthContext from '../../store/auth-context';
 import styles from './AuthForm.module.css';
 
 
@@ -53,7 +53,6 @@ const AuthForm = () => {
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
 
-    // optional: Add validation
 
     setIsLoading(true);
     let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyANU2Bacfb6T8xK44VMI5m0s7aaIHur6BA';

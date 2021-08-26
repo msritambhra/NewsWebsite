@@ -1,9 +1,9 @@
 import {useParams} from 'react-router-dom';
-import HotNews from '../components/HotNews/HotNews'
-import PriorityNewsList from '../components/PriorityNews/PriorityNewsList';
-import RecentNewsList from '../components/RecentNews/RecentNewsList';
+import HotNews from '../../components/HotNews/HotNews';
+import PriorityNewsList from '../../components/PriorityNews/PriorityNewsList/PriorityNewsList';
+import RecentNewsList from '../../components/RecentNews/RecentNewsList';
 import styles from './Section.module.css'
-import '../font-awesome-icons/style.css'
+import '../../font-awesome-icons/style.css'
 
 const Section = () => {
     const params = useParams();

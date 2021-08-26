@@ -1,13 +1,17 @@
-import {useState, useEffect, useCallback} from 'react'
+import {useState, useEffect, useCallback, useContext} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
-import LoadingSpinner from '../../UI/LoadingSpinner'
+import LoadingSpinner from '../UI/LoadingSpinner'
+import ApiAuthContext from '../../store/api-auth-context'
 import styles from './HotNews.module.css'
 
 const HotNews = (props) =>{
     const [article, setArticle] = useState('');
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(null);
+
+    const apiCtx = useContext(ApiAuthContext);
+    let token = apiCtx.apiToken;
     
     const fetchArticleHandler = useCallback(async ()=>{
         setIsLoading(true);
@@ -15,22 +19,46 @@ const HotNews = (props) =>{
         try{
             let response;
             if (props.section===undefined){
-                response = await axios.get('http://localhost:3002/api/pList/44/allArticles?limit=1');
+                response = await axios.get('http://localhost:3002/api/pList/28/allArticles?limit=1',{
+                    headers: { 
+                        Authorization: `Bearer ${token}`
+                    }
+                });
             }
             else if(props.section==="world"){
-                response = await axios.get('http://localhost:3002/api/pList/45/allArticles?limit=1')
+                response = await axios.get('http://localhost:3002/api/pList/29/allArticles?limit=1',{
+                    headers: { 
+                        Authorization: `Bearer ${token}`
+                    }
+                })
             }
             else if(props.section==="politics"){
-                response = await axios.get('http://localhost:3002/api/pList/46/allArticles?limit=1')
+                response = await axios.get('http://localhost:3002/api/pList/30/allArticles?limit=1',{
+                    headers: { 
+                        Authorization: `Bearer ${token}`
+                    }
+                })
             }
             else if(props.section==="technology"){
-                response = await axios.get('http://localhost:3002/api/pList/47/allArticles?limit=1')
+                response = await axios.get('http://localhost:3002/api/pList/32/allArticles?limit=1',{
+                    headers: { 
+                        Authorization: `Bearer ${token}`
+                    }
+                })
             }
             else if(props.section==="business"){
-                response = await axios.get('http://localhost:3002/api/pList/49/allArticles?limit=1')
+                response = await axios.get('http://localhost:3002/api/pList/31/allArticles?limit=1',{
+                    headers: { 
+                        Authorization: `Bearer ${token}`
+                    }
+                })
             }
             else if(props.section==="health"){
-                response = await axios.get('http://localhost:3002/api/pList/48/allArticles?limit=1')
+                response = await axios.get('http://localhost:3002/api/pList/33/allArticles?limit=1',{
+                    headers: { 
+                        Authorization: `Bearer ${token}`
+                    }
+                })
             }
             else{
                 throw new Error('Section not defined!')

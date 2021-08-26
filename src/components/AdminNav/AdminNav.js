@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { useState, useContext } from 'react';
 import styles from './AdminNav.module.css'
-import AuthContext from '../../../store/auth-context';
+import AuthContext from '../../store/auth-context';
 
 const AdminNav = () =>{
     const authCtx = useContext(AuthContext);

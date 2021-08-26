@@ -4,24 +4,28 @@ import { Route, Redirect, Switch, BrowserRouter } from 'react-router-dom';
 import { useContext } from 'react';
 
 import NavBar from './components/NavBar/NavBar';
-import Section from './views/Section';
-import Article from './views/Article';
-import NotFound from './views/NotFound';
-import LogoHeader from './components/NavBar/LogoHeader';
-import AdminNav from './components/Admin/Layout/AdminNav';
+import Section from './Pages/Section/Section';
+import Article from './Pages/Article/Article';
+import NotFound from './Pages/NotFound/NotFound';
+import LogoHeader from './components/LogoHeader/LogoHeader';
+import AdminNav from './components/AdminNav/AdminNav';
 import Footer from './components/Footer/Footer';
-import AuthForm from './components/Admin/Auth/AuthForm';
+import AuthForm from './components/AdminAuthForm/AuthForm';
 import AuthContext from './store/auth-context';
-import AdminHome from './components/Admin/UserPages/AdminHome';
-import CreateArticle from './components/Admin/UserPages/CreateArticle'
-import AddArticlePriority from './components/Admin/UserPages/AddArticlePriority'
-import CreatePList from './components/Admin/UserPages/CreatePList';
-import DeleteArticlePriority from './components/Admin/UserPages/DeleteArticlePriority';
+import ApiAuthContext from './store/api-auth-context';
+import AdminHome from './Pages/Admin/AdminHome/AdminHome';
+import CreateArticle from './Pages/Admin/CreateArticle/CreateArticle'
+import AddArticlePriority from './Pages/Admin/AddArticlePriority/AddArticlePriority'
+import CreatePList from './Pages/Admin/CreatePList/CreatePList';
+import DeleteArticlePriority from './Pages/Admin/DeleteArticlePriority/DeleteArticlePriority';
+import ApiLogin from './store/api-login';
 
 const App = () => {
     const authCtx = useContext(AuthContext);
+    const apiCtx = useContext(ApiAuthContext);
     
     return(<div>
+    {!apiCtx.apiIsLoggedIn && <ApiLogin/>}
     <BrowserRouter>
           <Switch>
             <Route exact path="/">
