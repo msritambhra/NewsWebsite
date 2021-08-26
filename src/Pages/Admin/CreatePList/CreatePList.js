@@ -10,6 +10,7 @@ const is255Words = (value) => (value.trim() !== '') && (value.trim().split(' ').
 const CreatePList = () =>{
     
     const [isLoading, setIsLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
 
     const {
         value: nameValue,
@@ -46,6 +47,7 @@ const CreatePList = () =>{
             'description': descriptionValue
         } ).then((response)=>{
             setIsLoading(false);
+            setSuccess(true);
             resetHandler();
         }).catch((error)=>{
             alert(error.message);
@@ -72,7 +74,8 @@ const CreatePList = () =>{
         <div className={styles.header}>
             <h1>Create Priority List</h1>
         </div> 
-        <form onSubmit={submitHandler} className={styles.form}>
+        {success && <p className={styles['success-text']}>Article Added!</p>}
+        <form onInput={()=>setSuccess(false)} onSubmit={submitHandler} className={styles.form}>
             
             <div className={styles['form-control']}>
                 <input 

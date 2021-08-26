@@ -17,7 +17,8 @@ const DeleteArticlePriority = () =>{
     const [articles, setArticles] = useState([]);
 
     const [error, setError] = useState(false);
-
+    const [success, setSuccess] = useState(false);
+    
     useEffect(()=>{
     
         setError(false);
@@ -89,6 +90,7 @@ const DeleteArticlePriority = () =>{
         axios.delete(`http://localhost:3002/api/pList/delete/${pListValue+"_"+articleValue}`)
         .then(()=>{
             setIsLoading(false);
+            setSuccess(true);
             resetHandler();
         }).catch((error)=>{
             setIsLoading(false);
@@ -113,7 +115,8 @@ const DeleteArticlePriority = () =>{
         <div className={styles.header}>
             <h1>Delete Article From Priority List</h1>
         </div> 
-        <form onSubmit={submitHandler} className={styles.form}>
+        {success && <p className={styles['success-text']}>Article deleted from Priority List!</p>}
+        <form onInput={()=>setSuccess(false)} onSubmit={submitHandler} className={styles.form}>
            
             <div className={styles['form-control']}>
                 <select name="pList" id="pList" 

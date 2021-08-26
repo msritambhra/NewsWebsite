@@ -17,7 +17,7 @@ const CreateArticle = () =>{
     const [authorList, setAuthorList] = useState([]);
 
     const [error, setError] = useState(false);
-
+    const [success, setSuccess] = useState(false);
 
     useEffect(()=>{
     
@@ -104,6 +104,8 @@ const CreateArticle = () =>{
     const addArticle = (newArticle) =>{
         axios.post('http://localhost:3002/api/article/createArticle', newArticle).then((response)=>{
             setIsLoading(false);
+            // alert('Article Added!')
+            setSuccess(true);
             resetHandler();
         }).catch((error)=>{
             alert(error.message);
@@ -145,7 +147,8 @@ const CreateArticle = () =>{
         <div className={styles.header}>
             <h1>Create Article</h1>
         </div> 
-        <form onSubmit={submitHandler} className={styles.form}>
+        {success && <p className={styles['success-text']}>Article Added!</p>}
+        <form onInput={()=>setSuccess(false)} onSubmit={submitHandler} className={styles.form}>
             <div className={styles['form-control']}>
                 <input 
                     name="title"

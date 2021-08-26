@@ -17,6 +17,7 @@ const AddArticlePriority = () =>{
     const [articles, setArticles] = useState([]);
 
     const [error, setError] = useState(false);
+    const [success, setSuccess] = useState(false);
 
     useEffect(()=>{
     
@@ -84,6 +85,7 @@ const AddArticlePriority = () =>{
             'articleId': articleValue
         } ).then((response)=>{
             setIsLoading(false);
+            setSuccess(true);
             resetHandler();
         }).catch((error)=>{
             setIsLoading(false);
@@ -110,7 +112,8 @@ const AddArticlePriority = () =>{
         <div className={styles.header}>
             <h1>Add Article to Priority List</h1>
         </div> 
-        <form onSubmit={submitHandler} className={styles.form}>
+        {success && <p className={styles['success-text']}>Article Added to Priority List!</p>}
+        <form onInput={()=>setSuccess(false)} onSubmit={submitHandler} className={styles.form}>
             
             <div className={styles['form-control']}>
                 <select name="pList" id="pList" 
