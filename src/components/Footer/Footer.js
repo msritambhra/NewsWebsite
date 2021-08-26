@@ -1,14 +1,25 @@
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './Footer.module.css'
 
 const Footer = () =>{
+    const newsletterInput = useRef();
+
+    const submitHandler = (event) =>{
+        event.preventDefault();
+        newsletterInput.current.value='';
+    }
     return <footer>
         <div className={styles['newsletter-container']}>
             <h1>Subscribe to our newsletter</h1>
             <p>Stay up to date with latest news</p>
-            <form className={styles['newsletter-form']}>
+            <form className={styles['newsletter-form']} onSubmit={submitHandler}>
                 
-                    <input type="text" id="email" name="email" placeholder="Your email address"/>
+                    <input 
+                        type="text" id="email" name="email" 
+                        placeholder="Your email address"
+                        ref={newsletterInput}
+                        />
                 
                     <button type="submit" className={styles['newsletter-submit-btn']}>SUBSCRIBE</button>
                 
